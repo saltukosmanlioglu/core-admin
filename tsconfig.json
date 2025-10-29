@@ -19,8 +19,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/app/*": ["app/*"],
+      "@/components/*": ["components/*"],
+      "@/public/*": ["public/*"],
+      "@/mui/*": ["@mui/*"],
+      "@/services/*": ["services/*"],
+      "@/utils/*": ["utils/*"],
+      "@/widgets/*": ["widgets/*"]
+    },
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
