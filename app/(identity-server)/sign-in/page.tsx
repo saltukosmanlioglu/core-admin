@@ -2,10 +2,11 @@
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
+
 import AppTheme from '@mui/theme/app-theme';
 import ColorModeSelect from '@mui/theme/color-mode-select';
-import SignInCard from '@mui/widgets/sign-in-card';
-import Content from '@/mui/widgets/content';
+import Content from '@/app/(identity-server)/sign-in/widgets/content';
+import SignInCard from '@/app/(identity-server)/sign-in/widgets/sign-in-card';
 
 export default function SignIn(props: { disableCustomTheme?: boolean }) {
   return (

@@ -1,12 +1,13 @@
+import Image from 'next/image';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
-
-import { SitemarkIcon } from '../widgets/custom-icons';
 
 const items = [
   {
@@ -41,7 +42,27 @@ export default function Content() {
       sx={{ flexDirection: 'column', alignSelf: 'center', gap: 4, maxWidth: 450 }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-        <SitemarkIcon />
+        <Card
+          variant="outlined"
+          sx={{ display: 'flex', gap: '8px', flexGrow: 1 }}
+        >
+          <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
+            <Image
+              alt='Incident AI Logo'
+              className='rounded-full'
+              height={50}
+              src="/incident_AI_logo.svg"
+              width={50}
+            />
+            <Typography
+              component="h1"
+              variant="h4"
+              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)', ml: 2 }}
+            >
+              Incident AI
+            </Typography>
+          </CardContent>
+        </Card>
       </Box>
       {items.map((item, index) => (
         <Stack key={index} direction="row" sx={{ gap: 2 }}>

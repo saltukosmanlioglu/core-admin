@@ -1,15 +1,15 @@
 "use client"
 
 import * as React from 'react';
+import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
-import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -18,7 +18,6 @@ import { styled } from '@mui/material/styles';
 
 import AppTheme from '@mui/theme/app-theme';
 import ColorModeSelect from '@mui/theme/color-mode-select';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from '@/mui/widgets/custom-icons';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -127,13 +126,41 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
-          <SitemarkIcon />
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mt: 'calc(var(--template-frame-height, 0px) + 4px)',
+            }}
+          >
+            <Card
+              variant="outlined"
+              sx={{ display: 'flex', gap: '8px', flexGrow: 1, padding: 2 }}
+            >
+              <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
+                <Image
+                  alt='Incident AI Logo'
+                  className='rounded-full'
+                  height={50}
+                  src="/incident_AI_logo.svg"
+                  width={50}
+                />
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)', ml: 2 }}
+                >
+                  Incident AI
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
           <Typography
             component="h1"
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign up
+            Sign Up
           </Typography>
           <Box
             component="form"
@@ -197,37 +224,6 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
             >
               Sign up
             </Button>
-          </Box>
-          <Divider>
-            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
-          </Divider>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign up with Google')}
-              startIcon={<GoogleIcon />}
-            >
-              Sign up with Google
-            </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign up with Facebook')}
-              startIcon={<FacebookIcon />}
-            >
-              Sign up with Facebook
-            </Button>
-            <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
-              <Link
-                href="/sign-in/"
-                variant="body2"
-                sx={{ alignSelf: 'center' }}
-              >
-                Sign in
-              </Link>
-            </Typography>
           </Box>
         </Card>
       </SignUpContainer>
