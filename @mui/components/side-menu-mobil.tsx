@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
-import MenuButton from './menu-button';
-import MenuContent from './menu-content';
+import MenuButton from '../layout/dashboard/components/menu-button';
+import MenuContent from '../layout/dashboard/components/menu-content';
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
@@ -18,29 +18,10 @@ interface SideMenuMobileProps {
 
 export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobileProps) {
   return (
-    <Drawer
-      anchor="right"
-      open={open}
-      onClose={toggleDrawer(false)}
-      sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-        [`& .${drawerClasses.paper}`]: {
-          backgroundImage: 'none',
-          backgroundColor: 'background.paper',
-        },
-      }}
-    >
-      <Stack
-        sx={{
-          maxWidth: '70dvw',
-          height: '100%',
-        }}
-      >
+    <Drawer anchor="right" open={open} onClose={toggleDrawer(false)} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, [`& .${drawerClasses.paper}`]: { backgroundImage: 'none', backgroundColor: 'background.paper', } }}>
+      <Stack sx={{ maxWidth: '70dvw', height: '100%' }}>
         <Stack direction="row" sx={{ p: 2, pb: 0, gap: 1 }}>
-          <Stack
-            direction="row"
-            sx={{ gap: 1, alignItems: 'center', flexGrow: 1, p: 1 }}
-          >
+          <Stack direction="row" sx={{ gap: 1, alignItems: 'center', flexGrow: 1, p: 1 }}>
             <Avatar
               sizes="small"
               alt="Riley Carter"

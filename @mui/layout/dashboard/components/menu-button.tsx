@@ -10,12 +10,7 @@ export default function MenuButton({
   ...props
 }: MenuButtonProps) {
   return (
-    <Badge
-      color="error"
-      variant="dot"
-      invisible={!showBadge}
-      sx={{ [`& .${badgeClasses.badge}`]: { right: 2, top: 2 } }}
-    >
+    <Badge color="error" variant="dot" invisible={!showBadge} sx={{ [`& .${badgeClasses.badge}`]: { right: 2, top: 2 } }}>
       <IconButton size="small" {...props} />
     </Badge>
   );
