@@ -4,10 +4,10 @@ import { DashboardLayout } from '@/mui/layout/dashboard';
 
 import { layoutProps } from './constants';
 
-export default function EmployeeList() {
+export default function DepartmentList() {
   return (
     <DashboardLayout {...layoutProps}>
-      <div>Employees</div>
+      <div>Department</div>
     </DashboardLayout>
   );
 }

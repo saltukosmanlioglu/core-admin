@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 
 import MenuContent from './menu-content';
 import OptionsMenu from '../../../components/options-menu';
+import NestedList from './nested-list';
 
 const drawerWidth = 240;
 
@@ -46,21 +47,21 @@ export default function SideMenu() {
       </Box>
       <Divider />
       <Box sx={{ overflow: 'auto', height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <MenuContent />
+        <NestedList />
       </Box>
       <Stack direction="row" sx={{ p: 2, gap: 1, alignItems: 'center', borderTop: '1px solid', borderColor: 'divider' }}>
         <Avatar
           sizes="small"
-          alt="Riley Carter"
+          alt="Mine Gurad"
           src="/app/favicon.ico"
           sx={{ width: 36, height: 36 }}
         />
         <Box sx={{ mr: 'auto' }}>
           <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px' }}>
-            Riley Carter
+            Mine Guard
           </Typography>
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            riley@email.com
+            info@mgai.com
           </Typography>
         </Box>
         <OptionsMenu />

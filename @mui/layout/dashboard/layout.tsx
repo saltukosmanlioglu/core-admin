@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react";
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +14,7 @@ import SideMenu from '@/mui/layout/dashboard/components/side-menu';
 
 import type { DashboardLayoutProps } from "./types";
 
-export default function DashboardLayout({ children, title }: DashboardLayoutProps) {
+export default function DashboardLayout({ buttons, breadcrumbItems, children, title }: DashboardLayoutProps) {
   return (
     <AppTheme>
       <CssBaseline enableColorScheme />
@@ -24,7 +23,7 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
         <AppNavbar />
         <Box component="main" sx={(theme) => ({ flexGrow: 1, backgroundColor: theme.vars ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)` : alpha(theme.palette.background.default, 1), overflow: 'auto', })}>
           <Stack spacing={2} sx={{ alignItems: 'center', mx: 3, pb: 5, mt: { xs: 8, md: 0 } }}>
-            <Header />
+            <Header breadcrumbItems={breadcrumbItems} buttons={buttons} />
             <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
               {title && <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
                 {title}
