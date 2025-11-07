@@ -34,14 +34,13 @@ export default function NavbarBreadcrumbs({ breadcrumbItems }: NavbarBreadcrumbs
         Home
       </Link>
       {breadcrumbItems?.map((b, i) => (
-        i === (breadcrumbItems.length - 1) ? <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600 }}>
-          {b.text}
-        </Typography> : <Link
-          color="text.primary"
-          href={b.href}
-        >
-          {b.text}
-        </Link>
+        i === (breadcrumbItems.length - 1) ?
+          <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600 }}>
+            {b.text}
+          </Typography> :
+          <Link color='inherit' href={b.href}>
+            {b.text}
+          </Link>
       ))}
     </StyledBreadcrumbs>
   );

@@ -9,7 +9,6 @@ import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import MenuContent from './menu-content';
 import OptionsMenu from '../../../components/options-menu';
 import NestedList from './nested-list';
 

@@ -2,11 +2,11 @@
 
 import { DashboardLayout } from '@/mui/layout/dashboard';
 
-import { layoutProps } from './constants';
+import { listPageLayoutProps } from '../constants';
 
 export default function EmployeeList() {
   return (
-    <DashboardLayout {...layoutProps}>
+    <DashboardLayout {...listPageLayoutProps}>
       <div>Employees</div>
     </DashboardLayout>
   );

@@ -9,7 +9,6 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 import MenuButton from '../layout/dashboard/components/menu-button';
-import MenuContent from '../layout/dashboard/components/menu-content';
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
@@ -38,7 +37,6 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
         </Stack>
         <Divider />
         <Stack sx={{ flexGrow: 1 }}>
-          <MenuContent />
           <Divider />
         </Stack>
         <Stack sx={{ p: 2 }}>

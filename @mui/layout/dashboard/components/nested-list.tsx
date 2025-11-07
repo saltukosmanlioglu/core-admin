@@ -18,16 +18,16 @@ const menuItems: MenuItem[] = [
     text: "Departments",
     icon: <InboxIcon fontSize="inherit" />,
     items: [
-      { text: "Departments List", href: "/departments/list" },
-      { text: "Create Department", href: "/departments/create" },
+      { text: "Departments List", href: "/department/list" },
+      { text: "Create Department", href: "/department/create" },
     ],
   },
   {
     text: "Employees",
     icon: <InboxIcon fontSize="inherit" />,
     items: [
-      { text: "Employees List", href: "/employees/list" },
-      { text: "Create Employee", href: "/employees/create" },
+      { text: "Employees List", href: "/employee/list" },
+      { text: "Create Employee", href: "/employee/create" },
     ],
   },
 ];
