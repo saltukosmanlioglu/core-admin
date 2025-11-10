@@ -3,6 +3,7 @@
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -28,7 +29,13 @@ export default function DashboardLayout({ buttons, breadcrumbItems, children, ti
               {title && <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
                 {title}
               </Typography>}
-              <div>{children}</div>
+              <Paper elevation={0}
+                sx={{
+                  p: 3,
+                  borderRadius: 3,
+                  bgcolor: "#0d1117",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}>{children}</Paper>
               <Copyright sx={{ my: 4 }} />
             </Box>
           </Stack>

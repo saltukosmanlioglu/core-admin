@@ -43,43 +43,43 @@ const menuItems: MenuItem[] = [
     text: "Event Description",
     icon: <DescriptionOutlinedIcon fontSize="inherit" />,
     items: [
-      { text: "Brief", href: "/department/list", icon: <SummarizeOutlinedIcon fontSize="inherit" /> },
-      { text: "Detailed", href: "/department/create", icon: <DescriptionOutlinedIcon fontSize="inherit" /> },
+      { text: "Brief", href: "/event-description/brief", icon: <SummarizeOutlinedIcon fontSize="inherit" /> },
+      { text: "Detailed", href: "/event-description/detailed", icon: <DescriptionOutlinedIcon fontSize="inherit" /> },
     ],
   },
   {
     text: "Evidence Collection",
     icon: <Inventory2OutlinedIcon fontSize="inherit" />,
     items: [
-      { text: "Discrepancy Analysis", href: "/employee/list", icon: <DifferenceOutlinedIcon fontSize="inherit" /> },
-      { text: "Follow-up Interview", href: "/employee/create", icon: <RecordVoiceOverOutlinedIcon fontSize="inherit" /> },
-      { text: "PEEPO Builder", href: "/employee/create", icon: <BuildCircleOutlinedIcon fontSize="inherit" /> },
+      { text: "Discrepancy Analysis", href: "/evidence-collection/discrepancy-analysis", icon: <DifferenceOutlinedIcon fontSize="inherit" /> },
+      { text: "Follow-up Interview", href: "/evidence-collection/follow-up-interview", icon: <RecordVoiceOverOutlinedIcon fontSize="inherit" /> },
+      { text: "PEEPO Builder", href: "/evidence-collection/peepo-builder", icon: <BuildCircleOutlinedIcon fontSize="inherit" /> },
     ],
   },
   {
     text: "ICAM Analysis",
     icon: <AccountTreeOutlinedIcon fontSize="inherit" />,
     items: [
-      { text: "Timeline and 5 Whys", href: "/department/list", icon: <TimelineOutlinedIcon fontSize="inherit" /> },
-      { text: "ICAM Table", href: "/department/create", icon: <TableChartOutlinedIcon fontSize="inherit" /> },
-      { text: "Contributing Factors", href: "/department/create", icon: <InsightsOutlinedIcon fontSize="inherit" /> },
-      { text: "Root Case Analysis", href: "/department/create", icon: <PsychologyAltOutlinedIcon fontSize="inherit" /> },
-      { text: "Organisational Learnings", href: "/department/create", icon: <EmojiObjectsOutlinedIcon fontSize="inherit" /> },
+      { text: "Timeline and 5 Whys", href: "/icam-analysis/timeline-and-5-whys", icon: <TimelineOutlinedIcon fontSize="inherit" /> },
+      { text: "ICAM Table", href: "/icam-analysis/icam-table", icon: <TableChartOutlinedIcon fontSize="inherit" /> },
+      { text: "Contributing Factors", href: "/icam-analysis/contributing-factors", icon: <InsightsOutlinedIcon fontSize="inherit" /> },
+      { text: "Root Cause Analysis", href: "/icam-analysis/root-cause-analysis", icon: <PsychologyAltOutlinedIcon fontSize="inherit" /> },
+      { text: "Organisational Learnings", href: "/icam-analysis/organisational-learnings", icon: <EmojiObjectsOutlinedIcon fontSize="inherit" /> },
     ],
   },
   {
     text: "Evaluation",
     icon: <FactCheckOutlinedIcon fontSize="inherit" />,
     items: [
-      { text: "Quality Review", href: "/employee/list", icon: <ChecklistRtlOutlinedIcon fontSize="inherit" /> },
-      { text: "Sense Check", href: "/employee/create", icon: <TaskAltOutlinedIcon fontSize="inherit" /> },
+      { text: "Quality Review", href: "/evaluation/quality-review", icon: <ChecklistRtlOutlinedIcon fontSize="inherit" /> },
+      { text: "Sense Check", href: "/evaluation/sense-check", icon: <TaskAltOutlinedIcon fontSize="inherit" /> },
     ],
   },
   {
     text: "Presentation",
     icon: <SlideshowOutlinedIcon fontSize="inherit" />,
     items: [
-      { text: "Incident Narrative", href: "/department/list", icon: <ArticleOutlinedIcon fontSize="inherit" /> },
+      { text: "Incident Narrative", href: "/presentation/incident-narrative", icon: <ArticleOutlinedIcon fontSize="inherit" /> },
     ],
   },
 ];
