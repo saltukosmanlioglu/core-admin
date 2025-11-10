@@ -1,45 +1,32 @@
 import * as React from 'react';
+
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import Select from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import IconButton from '@mui/material/IconButton';
+import Stepper from '@mui/material/Stepper';
 import Tooltip from '@mui/material/Tooltip';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 
-import { StepperProps } from './types';
+import { Item, StepperProps } from './types';
 
 const steps = [
   'Step 1', 'Step 2', 'Step 3', 'Step 4',
   'Step 5', 'Step 6', 'Step 7', 'Step 8', 'Step 9'
 ];
-
-// ---------- Types ----------
-type SubTask = {
-  title: string;
-  description?: string;
-  tags?: string[];
-};
-
-type Item = {
-  title: string;
-  description?: string;
-  tags?: string[];
-  subtasks?: SubTask[];
-};
 
 // ---------- Sample data (replace with your real data) ----------
 const stepContents: Item[][] = [
@@ -97,17 +84,8 @@ function StepPanel({ items }: { items: Item[] }) {
   return (
     <Stack spacing={1.5}>
       {items.map((it, idx) => (
-        <Paper
-          key={idx}
-          variant="outlined"
-          sx={{ p: 2, borderRadius: 2, bgcolor: 'background.paper' }}
-        >
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            justifyContent="space-between"
-            alignItems={{ xs: 'flex-start', sm: 'center' }}
-            gap={1}
-          >
+        <Paper key={idx} variant="outlined" sx={{ p: 2, borderRadius: 2, bgcolor: 'background.paper' }}>
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} gap={1}>
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
               {idx + 1}. {it.title}
             </Typography>
@@ -132,20 +110,8 @@ function StepPanel({ items }: { items: Item[] }) {
               <Divider sx={{ mb: 1.25 }} />
               <Stack spacing={1}>
                 {it.subtasks.map((s, i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      p: 1.25,
-                      borderRadius: 1.5,
-                      bgcolor: 'action.hover'
-                    }}
-                  >
-                    <Stack
-                      direction={{ xs: 'column', sm: 'row' }}
-                      justifyContent="space-between"
-                      alignItems={{ xs: 'flex-start', sm: 'center' }}
-                      gap={1}
-                    >
+                  <Box key={i} sx={{ p: 1.25, borderRadius: 1.5, bgcolor: 'action.hover' }}>
+                    <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} gap={1}>
                       <Typography sx={{ fontWeight: 600 }}>
                         {i + 1}. {s.title}
                       </Typography>
@@ -209,27 +175,9 @@ function StepOneAccordion({
       {items.map((it, idx) => {
         const expanded = expandedMap[idx] ?? allExpanded;
         return (
-          <Accordion
-            key={idx}
-            disableGutters
-            expanded={expanded}
-            onChange={() => toggleOne(idx)}
-            sx={{ borderRadius: 2, boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              sx={{
-                '& .MuiAccordionSummary-content': { my: 0 },
-                '& .MuiAccordionSummary-content.Mui-expanded': { my: 0 }
-              }}
-            >
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                alignItems={{ xs: 'flex-start', sm: 'center' }}
-                justifyContent="space-between"
-                gap={1}
-                sx={{ width: '100%' }}
-              >
+          <Accordion key={idx} disableGutters expanded={expanded} onChange={() => toggleOne(idx)} sx={{ borderRadius: 2, boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ '& .MuiAccordionSummary-content': { my: 0 }, '& .MuiAccordionSummary-content.Mui-expanded': { my: 0 } }}>
+              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} justifyContent="space-between" gap={1} sx={{ width: '100%' }}>
                 <Typography sx={{ fontWeight: 600 }}>
                   {idx + 1}. {it.title}
                 </Typography>
@@ -257,13 +205,7 @@ function StepOneAccordion({
                   <Stack spacing={1}>
                     {it.subtasks.map((s, subIdx) => (
                       <Box key={subIdx} sx={{ p: 1.25, borderRadius: 1.5, bgcolor: 'action.hover' }}>
-                        <Stack
-                          direction={{ xs: 'column', sm: 'row' }}
-                          alignItems={{ xs: 'flex-start', sm: 'center' }}
-                          justifyContent="space-between"
-                          gap={1}
-                          sx={{ mb: 0.5 }}
-                        >
+                        <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} justifyContent="space-between" gap={1} sx={{ mb: 0.5 }}>
                           <Typography sx={{ fontWeight: 600 }}>
                             {subIdx + 1}. {s.title}
                           </Typography>
@@ -372,38 +314,15 @@ export default function HorizontalLinearStepper({ }: StepperProps) {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          {/* Step Content Panel */}
-          <Box
-            role="region"
-            aria-label={`Content for ${steps[activeStep]}`}
-            sx={{
-              mt: 2,
-              p: 2,
-              borderRadius: 2,
-              border: '1px solid',
-              borderColor: 'divider',
-              bgcolor: 'background.paper'
-            }}
-          >
+          <Box role="region" aria-label={`Content for ${steps[activeStep]}`} sx={{ mt: 2, p: 2, borderRadius: 2, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
             {/* Header: title (left) • version dropdown + icon-only expand/collapse (right) */}
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-              sx={{ mb: 2 }}
-              gap={1}
-            >
+            <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }} gap={1}>
               <Typography variant="h6">{steps[activeStep]}</Typography>
 
               <Stack direction="row" alignItems="center" gap={1}>
                 {/* Version dropdown (UI-only, no services) */}
                 <FormControl size="small" sx={{ minWidth: 120 }}>
-                  <Select
-                    value={selectedVersion}
-                    onChange={(e) => setSelectedVersion(e.target.value as string)}
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Version selector' }}
-                  >
+                  <Select value={selectedVersion} onChange={(e) => setSelectedVersion(e.target.value as string)} displayEmpty inputProps={{ 'aria-label': 'Version selector' }}>
                     {versions.map((v) => (
                       <MenuItem key={v} value={v}>{v}</MenuItem>
                     ))}
@@ -413,11 +332,7 @@ export default function HorizontalLinearStepper({ }: StepperProps) {
                 {/* Icon-only expand/collapse for Step 1 */}
                 {activeStep === 0 && (
                   <Tooltip title={step1AllExpanded ? 'Collapse all' : 'Expand all'}>
-                    <IconButton
-                      size="small"
-                      onClick={() => setStep1AllExpanded((p) => !p)}
-                      aria-label={step1AllExpanded ? 'Collapse all' : 'Expand all'}
-                    >
+                    <IconButton size="small" onClick={() => setStep1AllExpanded((p) => !p)} aria-label={step1AllExpanded ? 'Collapse all' : 'Expand all'}>
                       {expandToggleIcon}
                     </IconButton>
                   </Tooltip>
@@ -429,10 +344,7 @@ export default function HorizontalLinearStepper({ }: StepperProps) {
 
             {/* Step 1 uses read-only accordion; others use card panel */}
             {activeStep === 0 ? (
-              <StepOneAccordion
-                items={stepContents[0] || []}
-                allExpanded={step1AllExpanded}
-              />
+              <StepOneAccordion items={stepContents[0] || []} allExpanded={step1AllExpanded} />
             ) : (
               <StepPanel items={stepContents[activeStep] || []} />
             )}
@@ -440,12 +352,7 @@ export default function HorizontalLinearStepper({ }: StepperProps) {
 
           {/* Navigation Buttons */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
+            <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
               Back
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />

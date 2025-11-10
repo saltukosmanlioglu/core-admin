@@ -24,6 +24,7 @@
     "dayjs": "latest",
     "next": "latest",
     "react": "latest",
+    "react-circular-progressbar": "^2.2.0",
     "react-dom": "latest",
     "typescript": "latest"
   },
