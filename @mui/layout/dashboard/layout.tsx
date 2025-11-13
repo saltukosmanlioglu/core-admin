@@ -10,12 +10,17 @@ import Typography from '@mui/material/Typography';
 import AppNavbar from '@mui/components/app-navbar';
 import AppTheme from '@mui/theme/app-theme';
 import Copyright from '@/mui/layout/components/copyright';
-import Header from '@/mui/layout/dashboard/components/header';
 import SideMenu from '@/mui/layout/dashboard/components/side-menu';
 
+import { Header } from './components/header';
 import type { DashboardLayoutProps } from "./types";
 
-export default function DashboardLayout({ buttons, breadcrumbItems, children, title }: DashboardLayoutProps) {
+export default function DashboardLayout({
+  breadcrumbItems,
+  buttons,
+  children,
+  title
+}: DashboardLayoutProps) {
   return (
     <AppTheme>
       <CssBaseline enableColorScheme />
