@@ -40,7 +40,9 @@ export default function DashboardLayout({
                   borderRadius: 3,
                   bgcolor: "#0d1117",
                   border: "1px solid rgba(255,255,255,0.06)",
-                }}>{children}</Paper>
+                }}>
+                {children}
+              </Paper>
               <Copyright sx={{ my: 4 }} />
             </Box>
           </Stack>
