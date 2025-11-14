@@ -83,7 +83,7 @@ const TopKeywords: React.FunctionComponent<ChildProps & { data: WordCloudSeriesO
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
-        style={{ height: 360, width: "100%" }}
+        style={{ minHeight: 320, height: '100%', width: "100%" }}
       />
     </ChartCard>
   );

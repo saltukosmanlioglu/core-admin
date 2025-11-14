@@ -37,13 +37,13 @@ const AcceptanceRateByInvestigators: React.FunctionComponent<ChildProps> = ({ on
       left: 'center',
       data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Oct', 'Nov', 'Dec'],
       textStyle: {
-        color: '#fff',
+        color: '#000',
       }
     },
     xAxis: [
       {
         axisLabel: {
-          color: "#fff"
+          color: "#000"
         },
         type: 'category',
         axisTick: { show: false },
@@ -53,11 +53,11 @@ const AcceptanceRateByInvestigators: React.FunctionComponent<ChildProps> = ({ on
     yAxis: [
       {
         axisLabel: {
-          color: "#fff"
+          color: "#000"
         },
         name: "Acceptance Rate (%)",
         nameLocation: "middle",
-        nameTextStyle: { color: '#fff' },
+        nameTextStyle: { color: '#000' },
         nameGap: 40,
         nameRotate: 90,
         type: 'value'

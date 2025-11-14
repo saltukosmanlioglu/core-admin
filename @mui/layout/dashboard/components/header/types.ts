@@ -11,12 +11,14 @@ export type HeaderButtonProps =
     text?: string;
     icon?: React.ReactNode;
     onClick?: () => void;
+    onClose?: () => void;
   }
   | {
     type: "dropdown";
     text?: string;
     icon?: React.ReactNode;
     dropdownList: Array<DropdownItemProps>;
+    onClose?: () => void;
   };
 
 export interface DropdownItemProps {

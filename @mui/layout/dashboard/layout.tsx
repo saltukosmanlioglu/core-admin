@@ -22,7 +22,7 @@ export default function DashboardLayout({
   title
 }: DashboardLayoutProps) {
   return (
-    <AppTheme>
+    <AppTheme disableCustomTheme>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: 'flex' }}>
         <SideMenu />
@@ -31,14 +31,14 @@ export default function DashboardLayout({
           <Stack spacing={2} sx={{ alignItems: 'center', mx: 3, pb: 5, mt: { xs: 8, md: 0 } }}>
             <Header breadcrumbItems={breadcrumbItems} buttons={buttons} />
             <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
-              {title && <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+              {title && <Typography component="h1" variant="h4" sx={{ mb: 2, fontWeight: 700 }}>
                 {title}
               </Typography>}
               <Paper elevation={0}
                 sx={{
                   p: 3,
                   borderRadius: 3,
-                  bgcolor: "#0d1117",
+                  bgcolor: "#f8fafc",
                   border: "1px solid rgba(255,255,255,0.06)",
                 }}>
                 {children}

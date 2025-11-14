@@ -41,7 +41,7 @@ export default function Header({ buttons, breadcrumbItems }: HeaderProps) {
                 displayEmpty
                 open={Boolean(openMap[i])}
                 onOpen={() => setOpenMap((m) => ({ ...m, [i]: true }))}
-                onClose={() => setOpenMap((m) => ({ ...m, [i]: false }))}
+                onClose={() => { setOpenMap((m) => ({ ...m, [i]: false })); }}
                 inputProps={{ "aria-label": b.text ?? "selector" }}
                 renderValue={(val) => (val === "" ? b.text ?? "Select" : (val as string))}
                 IconComponent={(iconProps: any) => {
@@ -51,22 +51,57 @@ export default function Header({ buttons, breadcrumbItems }: HeaderProps) {
                   return (
                     <CloseRoundedIcon
                       {...iconProps}
-                     
                       onClick={(e: any) => {
                         e.preventDefault();
                         e.stopPropagation();
                         setDropdownValues((prev) => ({ ...prev, [i]: "" }));
-                        (b as any).onCloseIconClick?.();
+                        b.onClose?.();
                       }}
                       sx={{ cursor: "pointer" }}
                       fontSize="small"
                     />
                   );
                 }}
-                sx={{ color: "#c9d1d9", ".MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.16)" }, "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.24)" }, "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.32)" }, bgcolor: "rgba(255,255,255,0.06)", borderRadius: 2, "& .MuiSelect-icon": { pointerEvents: "auto", zIndex: 1 } }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      mt: 1,
+                      borderRadius: 2,
+                      bgcolor: "#ffffff",
+                      color: "#0f172a",
+                      boxShadow: "0 12px 32px rgba(15,23,42,0.12)",
+                      border: "1px solid rgba(148,163,184,0.20)",
+                    },
+                  },
+                }}
+                sx={{
+                  color: "#0f172a",
+                  bgcolor: "#ffffff",
+                  borderRadius: 2,
+                  fontSize: 14,
+                  ".MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(148,163,184,0.5)",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(148,163,184,0.8)",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "transparent",
+                  },
+                  "&.Mui-focused": {
+                    boxShadow: "0 0 0 2px rgba(164,108,194,0.28)", // soft purple glow
+                    backgroundColor: "#ffffff",
+                    transition: "all 0.22s ease",
+                  },
+                  "& .MuiSelect-icon": {
+                    pointerEvents: "auto",
+                    zIndex: 1,
+                    color: "#94a3b8",
+                  },
+                }}
               >
                 {b.dropdownList.map((opt, k) => (
-                  <MenuItem key={k} value={opt.text}>
+                  <MenuItem key={k} value={opt.text} sx={{ fontSize: 14, py: 1.0 }}>
                     {opt.icon && <span style={{ marginRight: 8 }}>{opt.icon}</span>}
                     {opt.text}
                   </MenuItem>

@@ -33,7 +33,7 @@ const ChartCard = React.forwardRef<EChartsType, ChartCardProps>(
       const url = chartInstance.current.getDataURL({
         type: "png",
         pixelRatio: 2,
-        backgroundColor: "#000",
+        backgroundColor: "#fff",
       });
       const link = document.createElement("a");
 
@@ -55,24 +55,26 @@ const ChartCard = React.forwardRef<EChartsType, ChartCardProps>(
 
     return (
       <React.Fragment>
-        <Card elevation={0} sx={{ borderRadius: 3 }}>
+        <Card elevation={0} sx={{ borderRadius: 3, boxShadow: "0 4px 12px rgba(164, 108, 194, 0.12)", p: 2 }}>
           <Box>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
-              <Typography variant="h6" sx={{ color: "#fff", fontWeight: 600 }}>
+              <Typography variant="h6" sx={{ color: "#000", fontSize: 16 }}>
                 {title}
               </Typography>
               <Stack direction="row" spacing={1} alignItems="center">
                 <Tooltip title="Download">
-                  <IconButton onClick={handleDownload} sx={{ borderRadius: 3, color: "#c9d1d9", bgcolor: "rgba(255,255,255,0.06)", "&:hover": { bgcolor: "rgba(255,255,255,0.12)" } }}>
+                  <IconButton onClick={handleDownload} sx={{ borderRadius: 5, color: "#98A2B3", bgcolor: "rgba(255,255,255,0.4)", transition: "all 0.25s ease", "&:hover": { bgcolor: "rgba(164,108,194,0.15)", color: "rgba(164,108,194,0.85)" } }}>
                     <CloudDownloadIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
+
                 <Tooltip title="Full Screen">
-                  <IconButton onClick={handleOpen} sx={{ borderRadius: 3, color: "#c9d1d9", bgcolor: "rgba(255,255,255,0.06)", "&:hover": { bgcolor: "rgba(255,255,255,0.12)" } }}>
+                  <IconButton onClick={handleOpen} sx={{ borderRadius: 5, color: "#98A2B3", bgcolor: "rgba(255,255,255,0.4)", transition: "all 0.25s ease", "&:hover": { bgcolor: "rgba(164,108,194,0.15)", color: "rgba(164,108,194,0.85)" } }}>
                     <FullscreenIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
               </Stack>
+
             </Stack>
           </Box>
           <Divider sx={{ py: 0.5 }} />
@@ -84,39 +86,17 @@ const ChartCard = React.forwardRef<EChartsType, ChartCardProps>(
           onClose={handleClose}
           closeAfterTransition
           slots={{ backdrop: Backdrop }}
-          slotProps={{
-            backdrop: {
-              timeout: 400,
-            },
-          }}
+          slotProps={{ backdrop: { timeout: 400, sx: { background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", backgroundImage: "linear-gradient(120deg, rgba(164,108,194,0.10), rgba(255,255,255,0.45))" } } }}
         >
-          <Box
-            sx={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Zoom in={open}>
-              <Box
-                sx={{
-                  width: "80%",
-                  height: "80%",
-                  bgcolor: "background.paper",
-                  border: "2px solid #000",
-                  boxShadow: 24,
-                  p: 4,
-                  borderRadius: 2,
-                  overflow: "hidden",
-                }}
-              >
-                {childWithHook}
+              <Box sx={{ width: "80%", height: "80%", bgcolor: "rgba(255,255,255,0.82)", borderRadius: "16px", p: 4, overflow: "hidden", boxShadow: "0 8px 32px rgba(164,108,194,0.28)", border: "1px solid rgba(164,108,194,0.18)", backdropFilter: "blur(4px)" }}>
+                {children}
               </Box>
             </Zoom>
           </Box>
         </Modal>
+
 
       </React.Fragment>
     );

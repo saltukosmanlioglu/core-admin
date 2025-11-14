@@ -37,7 +37,7 @@ const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: AIVsHumanEdit
       top: 0,
       left: "center",
       textStyle: {
-        color: "#fff"
+        color: "#000"
       }
     },
     xAxis: {
@@ -46,10 +46,10 @@ const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: AIVsHumanEdit
       nameLocation: "middle",
       nameGap: 28,
       nameTextStyle: {
-        color: '#fff'
+        color: '#000'
       },
       axisLabel: {
-        color: "#fff"
+        color: "#000"
       },
       min: 0,
     },
@@ -60,11 +60,11 @@ const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: AIVsHumanEdit
       nameGap: 38,
       nameRotate: 90,
       nameTextStyle: {
-        color: '#fff'
+        color: '#000'
       },
       min: 0,
       max: 10,
-      axisLabel: { formatter: "{value}%", color: '#fff' },
+      axisLabel: { formatter: "{value}%", color: '#000' },
       axisLine: { show: false },
       axisTick: { show: false },
       splitLine: { lineStyle: { color: "#e6e6e6" } },

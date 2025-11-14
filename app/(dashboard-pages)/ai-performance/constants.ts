@@ -31,6 +31,7 @@ export function layoutProps(
             text: "Last Quarter",
           },
         ],
+        onClose: () => setFilter({ ...filter, dateRange: undefined }),
       },
       {
         type: "dropdown",
@@ -39,6 +40,7 @@ export function layoutProps(
           text: investigator.name,
           onClick: () => setFilter({ ...filter, investigator: investigator.name }),
         })),
+        onClose: () => setFilter({ ...filter, investigator: undefined }),
       },
       {
         type: "dropdown",
@@ -47,8 +49,9 @@ export function layoutProps(
           text: department.name,
           onClick: () => setFilter({ ...filter, department: department.name }),
         })),
+        onClose: () => setFilter({ ...filter, department: undefined }),
       },
     ],
-    title: "AI Performance (Key Performance Indicators)",
+    title: "AI Performance",
   };
 }

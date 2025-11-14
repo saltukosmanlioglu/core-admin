@@ -45,7 +45,7 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: A
       top: "bottom",
       left: "center",
       textStyle: {
-        color: "#fff",
+        color: "#000",
       },
     },
     xAxis: [
@@ -53,7 +53,7 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: A
         type: "category",
         boundaryGap: false,
         axisLabel: {
-          color: "#fff",
+          color: "#000",
         },
         data: data.map((d) => d.month),
       },
@@ -63,9 +63,9 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: A
         name: "Values",
         nameGap: 40,
         nameLocation: "center",
-        nameTextStyle: { color: "#fff" },
+        nameTextStyle: { color: "#000" },
         axisLabel: {
-          color: "#fff",
+          color: "#000",
         },
         type: "value",
         axisPointer: {
