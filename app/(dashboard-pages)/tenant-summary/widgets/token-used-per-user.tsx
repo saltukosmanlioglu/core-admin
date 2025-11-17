@@ -3,7 +3,8 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
-import ChartCard from "@/components/chart-card";
+import DashboardCard from "@/components/dashboard-card";
+
 import { ChildProps } from "./types";
 
 export type TokensUsedPoint = {
@@ -58,13 +59,13 @@ export const TokensUsedPerUser: React.FunctionComponent<ChildProps & TokensUsedP
   };
 
   return (
-    <ChartCard title="Tokens Used per User (Last 30 Days)">
+    <DashboardCard title="Tokens Used per User (Last 30 Days)">
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
         style={{ minHeight: 320, height: '100%', width: "100%" }}
       />
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

@@ -17,7 +17,7 @@ export interface StatusBarProps {
 
 type BarPosition = { left: number; width: number };
 
-export const StatusBar: React.FC<StatusBarProps> = ({ items = [], containerId }) => {
+export const StatusBar: React.FunctionComponent<StatusBarProps> = ({ items = [], containerId }) => {
   const [pos, setPos] = useState<BarPosition>({ left: 0, width: 0 });
 
   useEffect(() => {

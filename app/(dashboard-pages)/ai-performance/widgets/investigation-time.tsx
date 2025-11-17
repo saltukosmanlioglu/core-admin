@@ -9,9 +9,9 @@ import {
 import { LineChart, type LineSeriesOption } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 
+import DashboardCard from "@/components/dashboard-card";
 import { InvestigationTimeProps } from "@/services/dashboard/ai-performance/investigation-time";
 
-import ChartCard from "./components/chart-card";
 import { ChildProps } from "./types";
 
 echarts.use([
@@ -107,13 +107,13 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: A
   };
 
   return (
-    <ChartCard title="AI vs Human Investigation Time Chart">
+    <DashboardCard title="AI vs Human Investigation Time Chart">
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
         style={{ minHeight: 320, height: "100%", width: "100%" }}
       />
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

@@ -1,5 +1,4 @@
-import { Stack, Tooltip, Typography } from "@mui/material";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Typography } from "@mui/material";
 
 import { KPICard } from "@/components/kpi-card";
 import { KPI } from "@/services/dashboard/ai-performance/KPIs";
@@ -8,15 +7,7 @@ export const AIOutputAcceptanceRate: React.FunctionComponent<{ data: Pick<KPI, '
   data
 }) => {
   return (
-    <KPICard>
-      <Stack direction="row" alignItems="center" spacing={0.75}>
-        <Typography variant="body2" color="text.secondary">
-          AI Output Acceptance Rate
-        </Typography>
-        <Tooltip title="Percentage of AI outputs accepted without major edits" arrow>
-          <InfoOutlinedIcon fontSize="small" sx={{ color: "text.disabled" }} />
-        </Tooltip>
-      </Stack>
+    <KPICard title="AI Output Acceptance Rate" tooltipTitle="Percentage of AI outputs accepted without major edits">
       <Typography
         variant="h4"
         sx={{ fontWeight: 800, color: '#2da44e', lineHeight: 1.1 }}

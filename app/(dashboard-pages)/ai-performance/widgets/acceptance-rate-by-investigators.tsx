@@ -12,7 +12,8 @@ import {
 import { BarChart, BarSeriesOption } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 
-import ChartCard from "./components/chart-card";
+import DashboardCard from "@/components/dashboard-card";
+
 import { ChildProps } from "./types";
 
 echarts.use([TooltipComponent, GridComponent, TitleComponent, BarChart, CanvasRenderer]);
@@ -142,13 +143,13 @@ const AcceptanceRateByInvestigators: React.FunctionComponent<ChildProps> = ({ on
   };
 
   return (
-    <ChartCard title="AI Output Acceptance Rate By Investigator">
+    <DashboardCard title="AI Output Acceptance Rate By Investigator">
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
         style={{ minHeight: 320, height: '100%', width: '100%' }}
       />
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

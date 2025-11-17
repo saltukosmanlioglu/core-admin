@@ -2,21 +2,23 @@
 
 import React from "react";
 import ReactECharts from "echarts-for-react";
-import ChartCard from "@/components/chart-card";
+
+import DashboardCard from "@/components/dashboard-card";
+
 import { ChildProps } from "./types";
 
 export type EngagementSegment = {
   name: string;
   value: number;
   color: string;
-  subtitle: string; // kullanılmıyor ama interface bozulmasın
+  subtitle: string;
 };
 
 export interface UserEngagementProps {
   data: Array<EngagementSegment>;
 }
 
-export const UserEngagement: React.FC<ChildProps & UserEngagementProps> = ({
+export const UserEngagement: React.FunctionComponent<ChildProps & UserEngagementProps> = ({
   data,
   onChartReady,
 }) => {
@@ -46,7 +48,6 @@ export const UserEngagement: React.FC<ChildProps & UserEngagementProps> = ({
           name: item.name,
           itemStyle: { color: item.color },
         })),
-
         emphasis: {
           itemStyle: {
             shadowBlur: 10,
@@ -59,13 +60,13 @@ export const UserEngagement: React.FC<ChildProps & UserEngagementProps> = ({
   };
 
   return (
-    <ChartCard title="User Engagement Segments">
+    <DashboardCard title="User Engagement Segments">
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
         style={{ minHeight: 320, height: "100%", width: "100%" }}
       />
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

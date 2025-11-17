@@ -1,18 +1,19 @@
 import { Typography } from "@mui/material";
 
 import { KPICard } from "@/components/kpi-card";
-import { KPI } from "@/services/dashboard/tenant-summary/KPIs";
 
-export const CompanyDetails: React.FunctionComponent<{ data: Pick<KPI, 'company'> }> = ({
-  data
-}) => {
+interface CompanyDetailProps {
+  name: string;
+}
+
+export const CompanyDetails: React.FunctionComponent<CompanyDetailProps> = ({ name }) => {
   return (
-    <KPICard title="Company Details">
+    <KPICard subtitle="Enterprise Plus Contract" title="Company Details">
       <Typography
         variant="h4"
-        sx={{ fontWeight: 800, color: '#2da44e', lineHeight: 1.1 }}
+        sx={{ fontWeight: 700, color: '#2da44e', fontSize: 20 }}
       >
-        {data.company.name}%
+        {name}
       </Typography>
     </KPICard>
   );

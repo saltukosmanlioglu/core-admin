@@ -12,9 +12,9 @@ import {
 import { ScatterChart, ScatterSeriesOption } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 
+import DashboardCard from "@/components/dashboard-card";
 import { AIVsHumanEditsProps } from "@/services/dashboard/ai-performance/ai-vs-human-edits";
 
-import ChartCard from "./components/chart-card";
 import { ChildProps } from "./types";
 
 echarts.use([TooltipComponent, GridComponent, TitleComponent, ScatterChart, CanvasRenderer]);
@@ -86,13 +86,13 @@ const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: AIVsHumanEdit
   };
 
   return (
-    <ChartCard title="AI Confidence Vs Human Edits">
+    <DashboardCard title="AI Confidence Vs Human Edits">
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
         style={{ minHeight: 320, height: '100%', width: "100%" }}
       />
-    </ChartCard>
+    </DashboardCard>
   )
 };
 

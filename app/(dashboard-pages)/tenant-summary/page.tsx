@@ -8,27 +8,32 @@ import { DashboardLayout } from '@/mui/layout/dashboard';
 import StatusBar from '@/components/status-bar';
 
 import { AIPerformanceBaseParamsProps } from '@/services/dashboard/base';
-import { AIVsHumanEditsProps } from '@/services/dashboard/ai-performance/ai-vs-human-edits';
-import { InvestigationTimeProps } from '@/services/dashboard/ai-performance/investigation-time';
 import { GetDepartmentResponse } from '@/services/dashboard/department';
 import { GetInvestigatorResponse } from '@/services/dashboard/investigator';
-import { GetKPIResponse } from '@/services/dashboard/ai-performance/KPIs';
-import { TopKeywordsProps } from '@/services/dashboard/ai-performance/top-keywords';
 
 import { layoutProps } from './constants';
-import { ActiveUsers, CompanyDetails, CostPerToken, InactiveUsers, NumberOfTokensUsed } from './widgets/kpi';
-import { ActiveVsTotalUsers, ContractDetail, InactiveUser, InactiveUsersTable, TokensUsedPerUser, UserActivity, UserEngagement } from './widgets';
+import {
+  ActiveUsers,
+  CompanyDetails,
+  CostPerToken,
+  InactiveUsers,
+  NumberOfTokensUsed
+} from './widgets/kpi';
+import {
+  ActiveVsTotalUsers,
+  ContractDetail,
+  InactiveUser,
+  InactiveUsersTable,
+  TokensUsedPerUser,
+  UserActivity,
+  UserEngagement
+} from './widgets';
 
 export default function AIPerformance() {
   const [filter, setFilter] = useState<AIPerformanceBaseParamsProps>({});
 
   const [investigators, setInvestigators] = useState<GetInvestigatorResponse>([])
   const [departments, setDepartments] = useState<GetDepartmentResponse>([])
-
-  const [KPI, setKPI] = useState<GetKPIResponse>();
-  const [investigationTime, setInvestigationTime] = useState<Array<InvestigationTimeProps>>([]);
-  const [points, setPoints] = useState<AIVsHumanEditsProps>([]);
-  const [topKeywords, setTopKeywords] = useState<Array<TopKeywordsProps>>([]);
 
   const inactiveUsers: InactiveUser[] = [
     { id: 1, name: "John Smith", roleDepartment: "Safety / Department", lastReportGenerated: "Q1 Safety Report", tokensUsedLast60Days: 150, totalTokensUsed: 150, engagementStatus: "Dormant" },
@@ -85,7 +90,6 @@ export default function AIPerformance() {
     { id: 52, name: "Madison Morris", roleDepartment: "Analyst", lastReportGenerated: "Risk Forecast", tokensUsedLast60Days: 14, totalTokensUsed: 44, engagementStatus: "Low Engagement" },
   ];
 
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedId, setSelectedId] = useState<string | number | null>(null);
@@ -103,26 +107,26 @@ export default function AIPerformance() {
   return (
     <DashboardLayout {...layoutProps(filter, setFilter, departments, investigators)}>
       <Box id="main-layout-container">
-        <Grid container spacing={2} columns={21} sx={{ mb: (theme) => theme.spacing(2), width: '100%' }}>
-          {KPI && (
-            <Grid container spacing={2} columns={21} sx={{ mb: 2, width: '100%' }}>
-              <Grid size={{ xs: 12, sm: 6, lg: 5, }} sx={{ width: '100%' }}>
-                <CompanyDetails data={{ company: { name: 'sa' } }} />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-                <ActiveUsers data={{ activeUsers: 201 }} />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-                <InactiveUsers data={{ inactiveUsers: 126 }} />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
-                <NumberOfTokensUsed data={{ company: { name: 'sa' } }} />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
-                <CostPerToken data={{ company: { name: 'sa' } }} />
-              </Grid>
-            </Grid>
-          )}
+        <Grid container spacing={2} columns={23} sx={{ mb: 2, width: '100%' }}>
+          <Grid size={{ xs: 12, sm: 6, lg: 5, }} sx={{ width: '100%' }}>
+            <CompanyDetails name="Global Mining Co." />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
+            <ActiveUsers data={{ activeUsers: 201 }} />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
+            <InactiveUsers data={{ inactiveUsers: 126 }} />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
+            <NumberOfTokensUsed changePercent={12} value={1850} trend="up" />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
+            <CostPerToken
+              value={1850}
+              maxValue={2000}
+              subtitle="(AUD) vs monthly allocation"
+            />
+          </Grid>
         </Grid>
 
         <Grid container spacing={2} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
@@ -330,13 +334,12 @@ export default function AIPerformance() {
           </Grid>
         </Grid>
 
-        <StatusBar containerId='main-layout-container' items={
-          [
-            { name: 'Usage Health: ', value: 'Good' },
-            { name: 'Engagement Health', value: 'Deciling' },
-            { name: 'Renawal Probability', value: 'Moderate' },
-            { name: 'Support Interaction Level', value: '5 tickets last quarter' },
-          ]}
+        <StatusBar containerId='main-layout-container' items={[
+          { name: 'Usage Health: ', value: 'Good' },
+          { name: 'Engagement Health', value: 'Deciling' },
+          { name: 'Renawal Probability', value: 'Moderate' },
+          { name: 'Support Interaction Level', value: '5 tickets last quarter' },
+        ]}
         />
       </Box>
     </DashboardLayout>

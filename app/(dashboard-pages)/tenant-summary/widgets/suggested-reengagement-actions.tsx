@@ -2,14 +2,13 @@
 
 import React from "react";
 import {
-  Card,
-  CardContent,
   Switch,
   Typography,
   Stack,
   Box,
 } from "@mui/material";
-import ChartCard from "@/components/chart-card";
+
+import DashboardCard from "@/components/dashboard-card";
 
 export type ReengagementAction = {
   id: string;
@@ -22,11 +21,11 @@ export interface SuggestedReengagementActionsProps {
   onToggle?: (id: string, enabled: boolean) => void;
 }
 
-export const SuggestedReengagementActions: React.FC<
+export const SuggestedReengagementActions: React.FunctionComponent<
   SuggestedReengagementActionsProps
 > = ({ actions, onToggle }) => {
   return (
-    <ChartCard title="Suggested Re-engagement Actions">
+    <DashboardCard title="Suggested Re-engagement Actions">
       <Stack spacing={1.5}>
         {actions.map((action) => (
           <Box
@@ -53,7 +52,7 @@ export const SuggestedReengagementActions: React.FC<
           </Box>
         ))}
       </Stack>
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

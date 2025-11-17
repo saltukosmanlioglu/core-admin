@@ -7,8 +7,8 @@ export const InactiveUsers: React.FunctionComponent<{ data: Pick<KPI, 'inactiveU
   data
 }) => {
   return (
-    <KPICard title="Inactive Users">
-      <Typography variant="h4" sx={{ fontWeight: 800, color: '#2da44e', lineHeight: 1.1 }}>
+    <KPICard subtitle="30 days no sh use" title="Inactive Users">
+      <Typography variant="h4" sx={{ fontWeight: 800, color: '#fbbf24', lineHeight: 1.1 }}>
         {data.inactiveUsers}
       </Typography>
     </KPICard>

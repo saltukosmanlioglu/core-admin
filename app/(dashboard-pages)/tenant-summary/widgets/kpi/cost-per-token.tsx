@@ -1,19 +1,20 @@
 import { Typography } from "@mui/material";
 
 import { KPICard } from "@/components/kpi-card";
-import { KPI } from "@/services/dashboard/tenant-summary/KPIs";
 
-export const CostPerToken: React.FunctionComponent<{ data: Pick<KPI, 'company'> }> = ({
-  data
+export interface CostPerTokenProps {
+  maxValue: number | string;
+  subtitle?: string;
+  value: number | string;
+}
+
+export const CostPerToken: React.FunctionComponent<CostPerTokenProps> = ({
+  maxValue,
+  value
 }) => {
   return (
-    <KPICard title="Token Cost">
-      <Typography
-        variant="h4"
-        sx={{ fontWeight: 800, color: '#2da44e', lineHeight: 1.1 }}
-      >
-        {data.company.name}%
-      </Typography>
+    <KPICard subtitle="(AUD) vs monthly allocation" title="Token Cost">
+      <Typography variant="h4" sx={{ fontWeight: 700, color: "#2563eb" }}>${value} <span style={{ fontSize: 16 }}>/ ${maxValue}</span></Typography>
     </KPICard>
   );
 }

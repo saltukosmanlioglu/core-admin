@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-import ChartCard from "@/components/chart-card";
+import DashboardCard from "@/components/dashboard-card";
 import DataTable, { DataTableColumn, DataTablePaginationProps } from "@/components/data-table";
 
 export type InactiveUser = {
@@ -25,7 +25,7 @@ export interface InactiveUsersTableProps {
   pagination?: DataTablePaginationProps;
 }
 
-export const InactiveUsersTable: React.FC<InactiveUsersTableProps> = ({
+export const InactiveUsersTable: React.FunctionComponent<InactiveUsersTableProps> = ({
   users,
   onContactClick,
   selectable = false,
@@ -70,7 +70,7 @@ export const InactiveUsersTable: React.FC<InactiveUsersTableProps> = ({
   ];
 
   return (
-    <ChartCard title="Inactive Users - Feedback Opportunity">
+    <DashboardCard title="Inactive Users - Feedback Opportunity">
       <DataTable
         rows={users}
         columns={columns}
@@ -80,7 +80,7 @@ export const InactiveUsersTable: React.FC<InactiveUsersTableProps> = ({
         getRowId={(row) => row.id ?? row.name}
         pagination={pagination}
       />
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

@@ -9,7 +9,8 @@ import {
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
 
-import ChartCard from "./components/chart-card";
+import DashboardCard from "@/components/dashboard-card";
+
 import { ChildProps } from "./types";
 
 const ReactECharts = dynamic(() => import("echarts-for-react"), {
@@ -79,13 +80,13 @@ const TopKeywords: React.FunctionComponent<ChildProps & { data: WordCloudSeriesO
   };
 
   return (
-    <ChartCard title="Top Keywords in AI Findings">
+    <DashboardCard title="Top Keywords in AI Findings">
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
         style={{ minHeight: 320, height: '100%', width: "100%" }}
       />
-    </ChartCard>
+    </DashboardCard>
   );
 };
 

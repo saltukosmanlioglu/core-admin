@@ -3,7 +3,7 @@
 import React from "react";
 import { Box, Typography, LinearProgress } from "@mui/material";
 
-import ChartCard from "@/components/chart-card";
+import DashboardCard from "@/components/dashboard-card";
 
 import { ChildProps } from "./types";
 
@@ -19,18 +19,8 @@ export const ContractDetail: React.FunctionComponent<ChildProps & ContractDetail
   riskLabel
 }) => {
   return (
-    <ChartCard title="Contract Renewal Readiness">
-      <Box
-        sx={{
-          width: "100%",
-          minHeight: 180,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 2,
-        }}
-      >
+    <DashboardCard disableDownloadAction disableFullScreenAction title="Contract Renewal Readiness">
+      <Box sx={{ width: "100%", minHeight: 180, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2 }}>
         <Typography
           variant="subtitle2"
           sx={{ color: "#e5e7eb", fontWeight: 500, mb: 0.5 }}
@@ -53,23 +43,11 @@ export const ContractDetail: React.FunctionComponent<ChildProps & ContractDetail
             }}
           />
         </Box>
-
-        <Box
-          sx={{
-            mt: 1.5,
-            px: 3,
-            py: 1,
-            borderRadius: 2,
-            backgroundColor: "#fbbf24",
-            color: "#111827",
-            fontWeight: 700,
-            fontSize: 14,
-          }}
-        >
+        <Box sx={{ mt: 1.5, px: 3, py: 1, borderRadius: 2, backgroundColor: "#fbbf24", color: "#111827", fontWeight: 700, fontSize: 14 }}>
           {riskLabel}
         </Box>
       </Box>
-    </ChartCard>
+    </DashboardCard>
   );
 };
 
