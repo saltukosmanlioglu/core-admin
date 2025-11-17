@@ -1,16 +1,16 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from "@mui/material/Typography";
+import { Grid, Typography } from '@mui/material';
 
 import { DashboardLayout } from '@/mui/layout/dashboard';
+
 import { AIPerformanceBaseParamsProps } from '@/services/dashboard/base';
 import { AIVsHumanEditsProps, getAIVsHumanEdits } from '@/services/dashboard/ai-performance/ai-vs-human-edits';
 import { InvestigationTimeProps, getInvestigationTime } from '@/services/dashboard/ai-performance/investigation-time';
-import { DepartmentProps, getDepartments } from '@/services/dashboard/departments';
-import { getInvestigators, InvestigatorProps } from '@/services/dashboard/investigators';
-import { getKPIs, KPIProps } from '@/services/dashboard/ai-performance/KPIs';
+import { GetDepartmentResponse, getDepartments } from '@/services/dashboard/department';
+import { GetInvestigatorResponse, getInvestigators } from '@/services/dashboard/investigator';
+import { getKPIs, GetKPIResponse } from '@/services/dashboard/ai-performance/KPIs';
 import { getTopKeywords, TopKeywordsProps } from '@/services/dashboard/ai-performance/top-keywords';
 
 import { layoutProps } from './constants';
@@ -30,39 +30,39 @@ import {
 export default function AIPerformance() {
   const [filter, setFilter] = useState<AIPerformanceBaseParamsProps>({});
 
-  const [investigators, setInvestigators] = useState<Array<InvestigatorProps>>([])
-  const [departments, setDepartments] = useState<Array<DepartmentProps>>([])
+  const [investigators, setInvestigators] = useState<GetInvestigatorResponse>([])
+  const [departments, setDepartments] = useState<GetDepartmentResponse>([])
 
-  const [KPI, setKPI] = useState<KPIProps>();
+  const [KPI, setKPI] = useState<GetKPIResponse>();
   const [investigationTime, setInvestigationTime] = useState<Array<InvestigationTimeProps>>([]);
   const [points, setPoints] = useState<AIVsHumanEditsProps>([]);
   const [topKeywords, setTopKeywords] = useState<Array<TopKeywordsProps>>([]);
 
   useEffect(() => {
     filter && getKPIs(filter)
-      .then((data) => setKPI(data))
+      .then((res) => setKPI(res))
       .catch((e) => console.log(e))
 
     getInvestigationTime(filter)
-      .then((data) => setInvestigationTime(data))
+      .then((res) => setInvestigationTime(res))
       .catch((e) => console.log(e))
 
     getAIVsHumanEdits(filter)
-      .then((data) => setPoints(data))
+      .then((res) => setPoints(res))
       .catch((e) => console.log(e))
 
     getTopKeywords(filter)
-      .then((data) => setTopKeywords(data))
+      .then((res) => setTopKeywords(res))
       .catch((e) => console.log(e))
   }, [filter]);
 
   useEffect(() => {
     getInvestigators()
-      .then((data) => setInvestigators(data))
+      .then((res) => setInvestigators(res))
       .catch((e) => console.log(e))
 
     getDepartments()
-      .then((data) => setDepartments(data))
+      .then((res) => setDepartments(res))
       .catch((e) => console.log(e))
   }, [])
 
@@ -90,6 +90,7 @@ export default function AIPerformance() {
       <Typography component="h1" variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
         Investigation Efficiency
       </Typography>
+
       <Grid container spacing={2} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
         <Grid size={{ xs: 12, sm: 6 }}>
           <InvestigationTime data={investigationTime} />

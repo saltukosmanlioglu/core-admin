@@ -21,6 +21,7 @@ import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
+import PsychologyIcon from "@mui/icons-material/Psychology";
 import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import SlideshowOutlinedIcon from '@mui/icons-material/SlideshowOutlined';
 import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
@@ -38,6 +39,16 @@ const menuItems: MenuItem[] = [
     text: "Dashboard",
     href: "/dashboard",
     icon: <DashboardOutlinedIcon fontSize="inherit" />,
+  },
+  {
+    text: "AI Performance",
+    href: "/ai-performance",
+    icon: <PsychologyIcon fontSize="inherit" />,
+  },
+  {
+    text: "Tenant Summary",
+    href: "/tenant-summary",
+    icon: <PsychologyIcon fontSize="inherit" />,
   },
   {
     text: "Event Description",

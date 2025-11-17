@@ -1,15 +1,16 @@
 import { DashboardLayoutProps } from "@/mui/layout/dashboard";
 
 import { AIPerformanceBaseParamsProps } from "@/services/dashboard/base";
-import { GetDepartmentResponse } from "@/services/dashboard/department";
-import { GetInvestigatorResponse } from "@/services/dashboard/investigator";
+import { GetCompanyResponse } from "@/services/dashboard/company";
+import { GetModuleResponse } from "@/services/dashboard/module";
+
 import { shiftDate } from "@/utils/funcs";
 
 export function layoutProps(
   filter: AIPerformanceBaseParamsProps,
   setFilter: React.Dispatch<React.SetStateAction<AIPerformanceBaseParamsProps>>,
-  departments: GetDepartmentResponse,
-  investigators: GetInvestigatorResponse,
+  companies: GetCompanyResponse,
+  modules: GetModuleResponse,
 ): Omit<DashboardLayoutProps, "children"> {
   return {
     breadcrumbItems: [],
@@ -35,23 +36,23 @@ export function layoutProps(
       },
       {
         type: "dropdown",
-        text: "Investigator",
-        dropdownList: investigators.map((investigator) => ({
-          text: investigator.name,
-          onClick: () => setFilter({ ...filter, investigator: investigator.name }),
+        text: "Company",
+        dropdownList: companies.map((company) => ({
+          text: company.name,
+          onClick: () => setFilter({ ...filter, investigator: company.name }),
         })),
         onClose: () => setFilter({ ...filter, investigator: undefined }),
       },
       {
         type: "dropdown",
-        text: "Department",
-        dropdownList: departments.map((department) => ({
-          text: department.name,
-          onClick: () => setFilter({ ...filter, department: department.name }),
+        text: "Module",
+        dropdownList: modules.map((module) => ({
+          text: module.name,
+          onClick: () => setFilter({ ...filter, department: module.name }),
         })),
         onClose: () => setFilter({ ...filter, department: undefined }),
       },
     ],
-    title: "AI Performance",
+    title: "Tenant Summary",
   };
 }

@@ -1,10 +1,10 @@
+import { AIPerformanceBaseParamsProps } from "@/services/dashboard/base";
 import service from "@/services/dashboard/instance";
 
-import { KPIProps } from "./types";
-import { AIPerformanceBaseParamsProps } from "../../base";
+import { GetKPIResponse } from "./types";
 
-export const getKPIs = async (params: AIPerformanceBaseParamsProps): Promise<KPIProps> => {
-  const response = await service.get<KPIProps>('/ai-performance/KPIs', { params });
+export const getKPIs = async (params: AIPerformanceBaseParamsProps): Promise<GetKPIResponse> => {
+  const response = await service.get<GetKPIResponse>('/ai-performance/KPIs', { params });
 
   return response.data;
 };

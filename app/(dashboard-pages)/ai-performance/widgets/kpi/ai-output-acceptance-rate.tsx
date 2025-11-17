@@ -1,10 +1,10 @@
 import { Stack, Tooltip, Typography } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { KPIProps } from "@/services/dashboard/ai-performance/KPIs";
-import { KPICard } from "../components/kpi-card";
+import { KPICard } from "@/components/kpi-card";
+import { KPI } from "@/services/dashboard/ai-performance/KPIs";
 
-export const AIOutputAcceptanceRate: React.FunctionComponent<{ data: Pick<KPIProps, 'aiOutputAcceptanceRate'> }> = ({
+export const AIOutputAcceptanceRate: React.FunctionComponent<{ data: Pick<KPI, 'aiOutputAcceptanceRate'> }> = ({
   data
 }) => {
   return (

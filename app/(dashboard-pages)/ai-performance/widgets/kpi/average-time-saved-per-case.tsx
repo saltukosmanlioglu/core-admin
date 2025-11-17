@@ -1,20 +1,14 @@
 import { Stack, Typography } from "@mui/material";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 
-import { KPIProps } from "@/services/dashboard/ai-performance/KPIs";
+import { KPICard } from "@/components/kpi-card";
+import { KPI } from "@/services/dashboard/ai-performance/KPIs";
 
-import { KPICard } from "../components/kpi-card";
-
-export const AverageTimeSavedPerCase: React.FunctionComponent<{ data: Pick<KPIProps, 'averageTimeSavedPerCase'> }> = ({
+export const AverageTimeSavedPerCase: React.FunctionComponent<{ data: Pick<KPI, 'averageTimeSavedPerCase'> }> = ({
   data
 }) => {
   return (
-    <KPICard>
-      <Stack direction="row" alignItems="center" spacing={0.75}>
-        <Typography variant="body2" color="text.secondary">
-          Average Time Saved per Case
-        </Typography>
-      </Stack>
+    <KPICard title="Average Time Saved per Case">
       <Stack direction="row" alignItems="center" spacing={1}>
         <AccessTimeRoundedIcon sx={{ color: '#c8a043' }} />
         <Typography
