@@ -51,6 +51,11 @@ const menuItems: MenuItem[] = [
     icon: <PsychologyIcon fontSize="inherit" />,
   },
   {
+    text: "Human and Organisitional Factory",
+    href: "/human-and-organisitional-factors",
+    icon: <PsychologyIcon fontSize="inherit" />,
+  },
+  {
     text: "Event Description",
     icon: <DescriptionOutlinedIcon fontSize="inherit" />,
     items: [

@@ -15,3 +15,10 @@ export interface TenantSummaryBaseParamsProps {
   dateRange?: string;
   module?: string;
 }
+
+export interface HumanAndOrganisitionalFactorsBaseParamsProps {
+  controlType?: string;
+  dateRange?: string;
+  department?: string;
+  phmpArea?: string;
+}
