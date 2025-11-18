@@ -8,7 +8,9 @@ import StatusBar from '@/components/status-bar';
 import { getCompanies, GetCompanyResponse } from '@/services/dashboard/company';
 import { GetKPIResponse, getKPIs } from '@/services/dashboard/tenant-summary/KPIs';
 import { GetModuleResponse, getModules } from '@/services/dashboard/module';
+import { getNumberOfTokenUsedByUser, GetNumberOfTokenUsedByUserResponse } from '@/services/dashboard/tenant-summary/number-of-tokens-used-by-user';
 import { getUserActivities, GetUserActivityResponse } from '@/services/dashboard/tenant-summary/user-activity';
+import { GetUserEngagementResponse, getUserEngagements } from '@/services/dashboard/tenant-summary/user-engagement';
 import { TenantSummaryBaseParamsProps } from '@/services/dashboard/base';
 
 import { layoutProps } from './constants';
@@ -28,7 +30,6 @@ import {
   UserActivity,
   UserEngagement
 } from './widgets';
-import { GetUserEngagementResponse, getUserEngagements } from '@/services/dashboard/tenant-summary/user-engagement';
 
 export default function TenantSummary() {
   const [filter, setFilter] = useState<TenantSummaryBaseParamsProps>({});
@@ -39,6 +40,7 @@ export default function TenantSummary() {
   const [KPI, setKPI] = useState<GetKPIResponse>();
   const [userActivities, setUserActivities] = useState<GetUserActivityResponse>([])
   const [userEngagements, setUserEngagements] = useState<GetUserEngagementResponse>([])
+  const [numberOfTokenUsedByUser, setNumberOfTokenUsedByUser] = useState<GetNumberOfTokenUsedByUserResponse>([])
 
   const inactiveUsers: InactiveUser[] = [
     { id: 1, name: "John Smith", roleDepartment: "Safety / Department", lastReportGenerated: "Q1 Safety Report", tokensUsedLast60Days: 150, totalTokensUsed: 150, engagementStatus: "Dormant" },
@@ -120,6 +122,10 @@ export default function TenantSummary() {
 
     getUserEngagements(filter)
       .then((res) => setUserEngagements(res))
+      .catch((e) => console.log(e))
+
+    getNumberOfTokenUsedByUser(filter)
+      .then((res) => setNumberOfTokenUsedByUser(res))
       .catch((e) => console.log(e))
 
   }, [filter]);
@@ -211,14 +217,7 @@ export default function TenantSummary() {
             />
           </Grid> */}
           <Grid size={{ xs: 12, sm: 6 }}>
-            <TokensUsedPerUser
-              data={[
-                { label: "User 1", used: 5, limit: 10 },
-                { label: "User 2", used: 15, limit: 20 },
-                { label: "User 3", used: 25, limit: 30 },
-                { label: "User 4", used: 40, limit: 45 },
-              ]}
-            />
+            <TokensUsedPerUser data={numberOfTokenUsedByUser} />
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
             <ActiveVsTotalUsers
