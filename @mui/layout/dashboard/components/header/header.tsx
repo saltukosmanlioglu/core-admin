@@ -100,7 +100,7 @@ export default function Header({ buttons, breadcrumbItems }: HeaderProps) {
                   },
                 }}
               >
-                {b.dropdownList.map((opt, k) => (
+                {b.dropdownList?.map((opt, k) => (
                   <MenuItem key={k} value={opt.text} sx={{ fontSize: 14, py: 1.0 }}>
                     {opt.icon && <span style={{ marginRight: 8 }}>{opt.icon}</span>}
                     {opt.text}

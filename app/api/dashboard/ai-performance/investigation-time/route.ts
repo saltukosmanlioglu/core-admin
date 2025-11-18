@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export interface InvestigationTimeProps {
-  aiValue: number;
-  humanValue: number;
-  month: string;
-}
+import { ApiResponse } from "@/services/dashboard/base";
+import { GetInvestigationTimeResponse } from "@/services/dashboard/ai-performance/investigation-time";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -28,11 +25,17 @@ export async function GET(req: NextRequest) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  const data: Array<InvestigationTimeProps> = months.map((month) => ({
+  const generated: GetInvestigationTimeResponse = months.map((month) => ({
     month,
     aiValue: rand(AI_MIN, AI_MAX),
     humanValue: rand(HUMAN_MIN, HUMAN_MAX),
   }));
 
-  return NextResponse.json(data);
+  const response: ApiResponse<GetInvestigationTimeResponse> = {
+    data: generated,
+    success: true,
+    message: "Investigation time generated successfully",
+  };
+
+  return NextResponse.json(response);
 }

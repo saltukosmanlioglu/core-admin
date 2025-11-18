@@ -1,3 +1,6 @@
 export { getAIVsHumanEdits } from "./endpoints";
 
-export type { AIVsHumanEditsProps } from "./types";
+export type {
+  AIVsHumanEdits,
+  GetAIVsHumanEditsResponse
+} from "./types";

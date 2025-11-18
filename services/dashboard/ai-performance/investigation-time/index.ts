@@ -1,3 +1,6 @@
 export { getInvestigationTime } from "./endpoints";
 
-export type { InvestigationTimeProps } from "./types";
+export type {
+  GetInvestigationTimeResponse,
+  InvestigationTime
+} from "./types";

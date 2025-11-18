@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
 
 import { ApiResponse } from "@/services/dashboard/base";
-
-type CompanyProps = {
-  name: string;
-};
+import { GetCompanyResponse } from "@/services/dashboard/company";
 
 export async function GET() {
-  const companies: ApiResponse<Array<CompanyProps>> = {
+  const companies: ApiResponse<GetCompanyResponse> = {
     data: [
-      { name: 'Company 1' },
-      { name: 'Company 2' },
-      { name: 'Company 3' },
+      { name: "Company 1" },
+      { name: "Company 2" },
+      { name: "Company 3" },
     ],
     message: 'Response',
     success: true

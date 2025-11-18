@@ -6,12 +6,12 @@ import { Grid, Typography } from '@mui/material';
 import { DashboardLayout } from '@/mui/layout/dashboard';
 
 import { AIPerformanceBaseParamsProps } from '@/services/dashboard/base';
-import { AIVsHumanEditsProps, getAIVsHumanEdits } from '@/services/dashboard/ai-performance/ai-vs-human-edits';
-import { InvestigationTimeProps, getInvestigationTime } from '@/services/dashboard/ai-performance/investigation-time';
+import { getAIVsHumanEdits, GetAIVsHumanEditsResponse } from '@/services/dashboard/ai-performance/ai-vs-human-edits';
+import { GetInvestigationTimeResponse, getInvestigationTime } from '@/services/dashboard/ai-performance/investigation-time';
 import { GetDepartmentResponse, getDepartments } from '@/services/dashboard/department';
 import { GetInvestigatorResponse, getInvestigators } from '@/services/dashboard/investigator';
 import { getKPIs, GetKPIResponse } from '@/services/dashboard/ai-performance/KPIs';
-import { getTopKeywords, TopKeywordsProps } from '@/services/dashboard/ai-performance/top-keywords';
+import { getTopKeywords, GetTopKeywordsResponse } from '@/services/dashboard/ai-performance/top-keywords';
 
 import { layoutProps } from './constants';
 import {
@@ -34,9 +34,9 @@ export default function AIPerformance() {
   const [departments, setDepartments] = useState<GetDepartmentResponse>([])
 
   const [KPI, setKPI] = useState<GetKPIResponse>();
-  const [investigationTime, setInvestigationTime] = useState<Array<InvestigationTimeProps>>([]);
-  const [points, setPoints] = useState<AIVsHumanEditsProps>([]);
-  const [topKeywords, setTopKeywords] = useState<Array<TopKeywordsProps>>([]);
+  const [investigationTime, setInvestigationTime] = useState<GetInvestigationTimeResponse>([]);
+  const [points, setPoints] = useState<GetAIVsHumanEditsResponse>([]);
+  const [topKeywords, setTopKeywords] = useState<GetTopKeywordsResponse>([]);
 
   useEffect(() => {
     filter && getKPIs(filter)

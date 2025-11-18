@@ -1,15 +1,18 @@
 import { NextResponse } from "next/server";
 
-type InvestigatorProps = {
-  name: string;
-};
+import { ApiResponse } from "@/services/dashboard/base";
+import { GetInvestigatorResponse } from "@/services/dashboard/investigator";
 
 export async function GET() {
-  const investigators: InvestigatorProps[] = [
-    { name: "Dr. Eleanor Matthews" },
-    { name: "Dr. Sarah Connor" },
-    { name: "James Wilson" },
-  ];
+  const investigators: ApiResponse<GetInvestigatorResponse> = {
+    data: [
+      { name: "Dr. Eleanor Matthews" },
+      { name: "Dr. Sarah Connor" },
+      { name: "James Wilson" },
+    ],
+    message: 'Response',
+    success: true
+  };
 
   return NextResponse.json(investigators);
 }

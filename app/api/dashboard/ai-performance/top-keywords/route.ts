@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-type TopKeywordsProps = {
-  name: string;
-  value: number;
-};
+import { ApiResponse } from "@/services/dashboard/base";
+import { GetTopKeywordsResponse } from "@/services/dashboard/ai-performance/top-keywords";
 
 export async function GET(req: NextRequest) {
   const keywords = [
@@ -20,10 +18,16 @@ export async function GET(req: NextRequest) {
   const rand = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
-  const data: Array<TopKeywordsProps> = keywords.map((name) => ({
+  const generated: GetTopKeywordsResponse = keywords.map((name) => ({
     name,
     value: rand(10, 70),
   }));
 
-  return NextResponse.json(data);
+  const response: ApiResponse<GetTopKeywordsResponse> = {
+    data: generated,
+    success: true,
+    message: "Top keyword list generated successfully",
+  };
+
+  return NextResponse.json(response);
 }

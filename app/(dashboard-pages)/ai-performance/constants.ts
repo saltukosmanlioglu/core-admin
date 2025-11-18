@@ -36,7 +36,7 @@ export function layoutProps(
       {
         type: "dropdown",
         text: "Investigator",
-        dropdownList: investigators.map((investigator) => ({
+        dropdownList: investigators?.map((investigator) => ({
           text: investigator.name,
           onClick: () => setFilter({ ...filter, investigator: investigator.name }),
         })),
@@ -45,7 +45,7 @@ export function layoutProps(
       {
         type: "dropdown",
         text: "Department",
-        dropdownList: departments.map((department) => ({
+        dropdownList: departments?.map((department) => ({
           text: department.name,
           onClick: () => setFilter({ ...filter, department: department.name }),
         })),

@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Box, Grid } from '@mui/material';
 
-
 import { DashboardLayout } from '@/mui/layout/dashboard';
 import StatusBar from '@/components/status-bar';
 import { getCompanies, GetCompanyResponse } from '@/services/dashboard/company';

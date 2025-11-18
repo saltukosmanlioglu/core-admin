@@ -1,5 +1,5 @@
-import service from "@/services/dashboard/instance";
 import { ApiResponse } from "@/services/dashboard/base";
+import service from "@/services/dashboard/instance";
 
 import { GetModuleResponse } from "./types";
 

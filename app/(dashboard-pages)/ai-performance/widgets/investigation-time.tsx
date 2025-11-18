@@ -10,7 +10,7 @@ import { LineChart, type LineSeriesOption } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 
 import DashboardCard from "@/components/dashboard-card";
-import { InvestigationTimeProps } from "@/services/dashboard/ai-performance/investigation-time";
+import { GetInvestigationTimeResponse } from "@/services/dashboard/ai-performance/investigation-time";
 
 import { ChildProps } from "./types";
 
@@ -29,8 +29,8 @@ type EChartsOption = echarts.ComposeOption<
   LineSeriesOption
 >;
 
-const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: Array<InvestigationTimeProps> }> = ({
-  data,
+const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: GetInvestigationTimeResponse }> = ({
+  data = [],
   onChartReady
 }) => {
   const option: EChartsOption = {

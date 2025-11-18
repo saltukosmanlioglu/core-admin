@@ -1,3 +1,6 @@
 export { getTopKeywords } from "./endpoints";
 
-export type { TopKeywordsProps } from "./types";
+export type {
+  GetTopKeywordsResponse,
+  TopKeywords
+} from "./types";

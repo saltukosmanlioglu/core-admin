@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server";
 
 import { ApiResponse } from "@/services/dashboard/base";
-
-type ModuleProps = {
-  name: string;
-};
+import { GetModuleResponse } from "@/services/dashboard/module";
 
 export async function GET() {
-  const modules: ApiResponse<Array<ModuleProps>> = {
+  const modules: ApiResponse<GetModuleResponse> = {
     data: [
       { name: 'Incident AI' },
       { name: 'SHMS AI' },

@@ -1,3 +1,6 @@
 export { getDepartments } from "./endpoints";
 
-export type { Department, GetDepartmentResponse } from "./types";
+export type {
+  Department,
+  GetDepartmentResponse
+} from "./types";

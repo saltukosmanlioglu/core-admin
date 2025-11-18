@@ -1,10 +1,10 @@
+import { AIPerformanceBaseParamsProps, ApiResponse } from "@/services/dashboard/base";
 import service from "@/services/dashboard/instance";
 
-import { InvestigationTimeProps } from "./types";
-import { AIPerformanceBaseParamsProps } from "../../base";
+import { GetInvestigationTimeResponse } from "./types";
 
-export const getInvestigationTime = async (params: AIPerformanceBaseParamsProps): Promise<Array<InvestigationTimeProps>> => {
-  const response = await service.get<Array<InvestigationTimeProps>>('/ai-performance/investigation-time', { params });
+export const getInvestigationTime = async (params: AIPerformanceBaseParamsProps): Promise<GetInvestigationTimeResponse> => {
+  const response = await service.get<ApiResponse<GetInvestigationTimeResponse>>('/ai-performance/investigation-time', { params });
 
-  return response.data;
+  return response.data.data;
 };

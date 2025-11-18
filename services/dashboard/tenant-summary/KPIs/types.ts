@@ -1,4 +1,3 @@
-import { ApiResponse } from "@/services/dashboard/base";
 import { Company } from "@/services/dashboard/company";
 
 export interface KPI {
@@ -9,4 +8,4 @@ export interface KPI {
   numberOfTokensUsed: number;
 }
 
-export type GetKPIResponse = ApiResponse<KPI>
+export type GetKPIResponse = KPI
