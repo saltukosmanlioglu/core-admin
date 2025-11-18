@@ -4,21 +4,15 @@ import React from "react";
 import ReactECharts from "echarts-for-react";
 
 import DashboardCard from "@/components/dashboard-card";
+import { GetUserEngagementResponse } from "@/services/dashboard/tenant-summary/user-engagement";
 
 import { ChildProps } from "./types";
 
-export type EngagementSegment = {
-  name: string;
-  value: number;
-  color: string;
-  subtitle: string;
-};
-
 export interface UserEngagementProps {
-  data: Array<EngagementSegment>;
+
 }
 
-export const UserEngagement: React.FunctionComponent<ChildProps & UserEngagementProps> = ({
+export const UserEngagement: React.FunctionComponent<ChildProps & { data: GetUserEngagementResponse }> = ({
   data,
   onChartReady,
 }) => {

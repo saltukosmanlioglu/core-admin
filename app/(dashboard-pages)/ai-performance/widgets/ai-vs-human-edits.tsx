@@ -13,7 +13,7 @@ import { ScatterChart, ScatterSeriesOption } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 
 import DashboardCard from "@/components/dashboard-card";
-import { AIVsHumanEditsProps } from "@/services/dashboard/ai-performance/ai-vs-human-edits";
+import { GetAIVsHumanEditsResponse } from "@/services/dashboard/ai-performance/ai-vs-human-edits";
 
 import { ChildProps } from "./types";
 
@@ -23,7 +23,7 @@ type EChartsOption = echarts.ComposeOption<
   TooltipComponentOption | GridComponentOption | TitleComponentOption | ScatterSeriesOption
 >;
 
-const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: AIVsHumanEditsProps }> = ({ onChartReady, data }) => {
+const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: GetAIVsHumanEditsResponse }> = ({ onChartReady, data }) => {
   const option: EChartsOption = {
     grid: { left: 50, right: 16, top: 46, bottom: 44, containLabel: true },
     tooltip: {

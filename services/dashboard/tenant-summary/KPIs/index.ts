@@ -1,6 +1,8 @@
 export { getKPIs } from "./endpoints";
 
 export type {
+  GetKPIResponse,
   KPI,
-  GetKPIResponse
+  KPIToken,
+  NumberOfTokensUsed
 } from "./types";

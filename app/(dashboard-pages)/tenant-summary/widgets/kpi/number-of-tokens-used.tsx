@@ -5,21 +5,13 @@ import ArrowDownwardRoundedIcon from "@mui/icons-material/ArrowDownwardRounded";
 import DragHandleRoundedIcon from "@mui/icons-material/DragHandleRounded";
 
 import { KPICard } from "@/components/kpi-card";
+import { KPI } from "@/services/dashboard/tenant-summary/KPIs";
 
 export type TrendDirection = "up" | "down" | "flat";
 
-export interface MetricCardProps {
-  changePercent?: number;
-  subtitle?: string;
-  trend?: TrendDirection;
-  value: number | string;
-}
-
-export const NumberOfTokensUsed: React.FunctionComponent<MetricCardProps> = ({
-  changePercent,
-  subtitle,
-  trend,
-  value
+export const NumberOfTokensUsed: React.FunctionComponent<{ data: KPI['numberOfTokensUsed'], trend: TrendDirection }> = ({
+  data,
+  trend
 }) => {
 
   const isUp = trend === "up";
@@ -37,13 +29,13 @@ export const NumberOfTokensUsed: React.FunctionComponent<MetricCardProps> = ({
     <KPICard subtitle="Average daily token use" title="Tokens Used This Month">
       <Stack direction="row" alignItems="center" spacing={1.5}>
         <Typography variant="h4" sx={{ fontWeight: 700, color: "#2563eb", lineHeight: 1 }}>
-          {value}
+          {data.value}
         </Typography>
-        {changePercent !== undefined && (
+        {data.changePercent !== undefined && (
           <Stack direction="row" alignItems="center" spacing={0.5}>
             <TrendIcon sx={{ fontSize: 20, color: trendColor }} />
             <Typography variant="subtitle2" sx={{ fontWeight: 600, color: trendColor }}>
-              {changePercent}%
+              {data.changePercent}%
             </Typography>
           </Stack>
         )}

@@ -6,7 +6,9 @@ import { Box, Grid } from '@mui/material';
 import { DashboardLayout } from '@/mui/layout/dashboard';
 import StatusBar from '@/components/status-bar';
 import { getCompanies, GetCompanyResponse } from '@/services/dashboard/company';
+import { GetKPIResponse, getKPIs } from '@/services/dashboard/tenant-summary/KPIs';
 import { GetModuleResponse, getModules } from '@/services/dashboard/module';
+import { getUserActivities, GetUserActivityResponse } from '@/services/dashboard/tenant-summary/user-activity';
 import { TenantSummaryBaseParamsProps } from '@/services/dashboard/base';
 
 import { layoutProps } from './constants';
@@ -26,12 +28,17 @@ import {
   UserActivity,
   UserEngagement
 } from './widgets';
+import { GetUserEngagementResponse, getUserEngagements } from '@/services/dashboard/tenant-summary/user-engagement';
 
 export default function TenantSummary() {
   const [filter, setFilter] = useState<TenantSummaryBaseParamsProps>({});
 
   const [companies, setCompanies] = useState<GetCompanyResponse>([]);
   const [modules, setModules] = useState<GetModuleResponse>([])
+
+  const [KPI, setKPI] = useState<GetKPIResponse>();
+  const [userActivities, setUserActivities] = useState<GetUserActivityResponse>([])
+  const [userEngagements, setUserEngagements] = useState<GetUserEngagementResponse>([])
 
   const inactiveUsers: InactiveUser[] = [
     { id: 1, name: "John Smith", roleDepartment: "Safety / Department", lastReportGenerated: "Q1 Safety Report", tokensUsedLast60Days: 150, totalTokensUsed: 150, engagementStatus: "Dormant" },
@@ -103,6 +110,21 @@ export default function TenantSummary() {
   );
 
   useEffect(() => {
+    filter && getKPIs(filter)
+      .then((res) => setKPI(res))
+      .catch((e) => console.log(e))
+
+    getUserActivities(filter)
+      .then((res) => setUserActivities(res))
+      .catch((e) => console.log(e))
+
+    getUserEngagements(filter)
+      .then((res) => setUserEngagements(res))
+      .catch((e) => console.log(e))
+
+  }, [filter]);
+
+  useEffect(() => {
     getCompanies()
       .then((res) => setCompanies(res))
       .catch((e) => console.log(e))
@@ -115,161 +137,32 @@ export default function TenantSummary() {
   return (
     <DashboardLayout {...layoutProps(filter, setFilter, companies, modules)}>
       <Box id="main-layout-container">
-        <Grid container spacing={2} columns={23} sx={{ mb: 2, width: '100%' }}>
-          <Grid size={{ xs: 12, sm: 6, lg: 5, }} sx={{ width: '100%' }}>
-            <CompanyDetails name="Global Mining Co." />
+        {KPI && (
+          <Grid container spacing={2} columns={23} sx={{ mb: 2, width: '100%' }}>
+            <Grid size={{ xs: 12, sm: 6, lg: 5, }} sx={{ width: '100%' }}>
+              <CompanyDetails data={KPI.company} />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
+              <ActiveUsers data={KPI} />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
+              <InactiveUsers data={KPI} />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
+              <NumberOfTokensUsed data={KPI.numberOfTokensUsed} trend="up" />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
+              <CostPerToken data={KPI.token} />
+            </Grid>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
-            <ActiveUsers data={{ activeUsers: 201 }} />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
-            <InactiveUsers data={{ inactiveUsers: 126 }} />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
-            <NumberOfTokensUsed changePercent={12} value={1850} trend="up" />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 5 }}>
-            <CostPerToken
-              value={1850}
-              maxValue={2000}
-              subtitle="(AUD) vs monthly allocation"
-            />
-          </Grid>
-        </Grid>
+        )}
 
         <Grid container spacing={2} columns={12} sx={{ mb: (theme) => theme.spacing(2) }}>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <UserActivity data={[
-              { date: "1", primary: 18, secondary: 12 },
-              { date: "2", primary: 19, secondary: 12 },
-              { date: "3", primary: 20, secondary: 13 },
-              { date: "4", primary: 21, secondary: 13 },
-              { date: "5", primary: 22, secondary: 14 },
-              { date: "6", primary: 23, secondary: 14 },
-              { date: "7", primary: 24, secondary: 15 },
-              { date: "8", primary: 25, secondary: 15 },
-              { date: "9", primary: 26, secondary: 16 },
-              { date: "10", primary: 27, secondary: 17 },
-
-              { date: "11", primary: 29, secondary: 18 },
-              { date: "12", primary: 30, secondary: 18 },
-              { date: "13", primary: 32, secondary: 19 },
-              { date: "14", primary: 35, secondary: 21 },
-              { date: "15", primary: 38, secondary: 23 },
-              { date: "16", primary: 42, secondary: 25 },
-              { date: "17", primary: 45, secondary: 26 },
-              { date: "18", primary: 47, secondary: 27 },
-              { date: "19", primary: 49, secondary: 28 },
-              { date: "20", primary: 52, secondary: 29 },
-
-              { date: "21", primary: 55, secondary: 30 },
-              { date: "22", primary: 58, secondary: 31 },
-              { date: "23", primary: 61, secondary: 32 },
-              { date: "24", primary: 64, secondary: 33 },
-              { date: "25", primary: 67, secondary: 34 },
-              { date: "26", primary: 72, secondary: 35 },
-              { date: "27", primary: 76, secondary: 36 },
-              { date: "28", primary: 80, secondary: 37 },
-              { date: "29", primary: 83, secondary: 38 },
-              { date: "30", primary: 85, secondary: 39 },
-
-              { date: "31", primary: 87, secondary: 39 },
-              { date: "32", primary: 88, secondary: 40 },
-              { date: "33", primary: 89, secondary: 40 },
-              { date: "34", primary: 90, secondary: 41 },
-              { date: "35", primary: 92, secondary: 41 },
-              { date: "36", primary: 93, secondary: 42 },
-              { date: "37", primary: 94, secondary: 42 },
-              { date: "38", primary: 95, secondary: 43 },
-              { date: "39", primary: 97, secondary: 43 },
-              { date: "40", primary: 99, secondary: 44 },
-
-              { date: "41", primary: 101, secondary: 45 },
-              { date: "42", primary: 103, secondary: 45 },
-              { date: "43", primary: 104, secondary: 46 },
-              { date: "44", primary: 105, secondary: 46 },
-              { date: "45", primary: 106, secondary: 47 },
-              { date: "46", primary: 108, secondary: 47 },
-              { date: "47", primary: 109, secondary: 48 },
-              { date: "48", primary: 110, secondary: 48 },
-              { date: "49", primary: 112, secondary: 49 },
-              { date: "50", primary: 115, secondary: 50 },
-
-              { date: "51", primary: 118, secondary: 51 },
-              { date: "52", primary: 120, secondary: 51 },
-              { date: "53", primary: 122, secondary: 52 },
-              { date: "54", primary: 124, secondary: 52 },
-              { date: "55", primary: 126, secondary: 53 },
-              { date: "56", primary: 128, secondary: 54 },
-              { date: "57", primary: 129, secondary: 55 },
-              { date: "58", primary: 130, secondary: 55 },
-              { date: "59", primary: 131, secondary: 56 },
-              { date: "60", primary: 132, secondary: 56 },
-
-              { date: "61", primary: 132, secondary: 57 },
-              { date: "62", primary: 133, secondary: 57 },
-              { date: "63", primary: 134, secondary: 58 },
-              { date: "64", primary: 134, secondary: 58 },
-              { date: "65", primary: 135, secondary: 59 },
-              { date: "66", primary: 136, secondary: 59 },
-              { date: "67", primary: 136, secondary: 60 },
-              { date: "68", primary: 137, secondary: 60 },
-              { date: "69", primary: 138, secondary: 61 },
-              { date: "70", primary: 139, secondary: 61 },
-
-              { date: "71", primary: 140, secondary: 62 },
-              { date: "72", primary: 141, secondary: 62 },
-              { date: "73", primary: 142, secondary: 63 },
-              { date: "74", primary: 143, secondary: 63 },
-              { date: "75", primary: 144, secondary: 64 },
-              { date: "76", primary: 145, secondary: 64 },
-              { date: "77", primary: 146, secondary: 65 },
-              { date: "78", primary: 147, secondary: 65 },
-              { date: "79", primary: 148, secondary: 66 },
-              { date: "80", primary: 150, secondary: 66 },
-
-              { date: "81", primary: 152, secondary: 67 },
-              { date: "82", primary: 153, secondary: 68 },
-              { date: "83", primary: 154, secondary: 69 },
-              { date: "84", primary: 155, secondary: 69 },
-              { date: "85", primary: 156, secondary: 70 },
-              { date: "86", primary: 158, secondary: 71 },
-              { date: "87", primary: 159, secondary: 71 },
-              { date: "88", primary: 160, secondary: 72 },
-              { date: "89", primary: 161, secondary: 73 },
-              { date: "90", primary: 162, secondary: 74 }
-            ]
-            } />
+            <UserActivity data={userActivities} />
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <UserEngagement
-              data={[
-                {
-                  name: "Active",
-                  value: 40,
-                  color: "#22a26b",
-                  subtitle: "(last 7 days)",
-                },
-                {
-                  name: "Low Engagement",
-                  value: 30,
-                  color: "#2563eb",
-                  subtitle: "(8–30 days)",
-                },
-                {
-                  name: "Inactive",
-                  value: 25,
-                  color: "#e35151",
-                  subtitle: "(31–90 days)",
-                },
-                {
-                  name: "Invite Needed",
-                  value: 15,
-                  color: "#f5a623",
-                  subtitle: "Invite to upcoming release webinar",
-                },
-              ]}
-            />
+            <UserEngagement data={userEngagements} />
           </Grid>
           <Grid size={{ xs: 12, sm: 12 }}>
             <InactiveUsersTable
