@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Box, Stack, Typography } from "@mui/material";
 
 export interface StatusBarItem {
   name: string;
@@ -17,7 +15,9 @@ export interface StatusBarProps {
 
 type BarPosition = { left: number; width: number };
 
-export const StatusBar: React.FunctionComponent<StatusBarProps> = ({ items = [], containerId }) => {
+export const StatusBar: React.FunctionComponent<StatusBarProps> = ({
+  items = [],
+  containerId }) => {
   const [pos, setPos] = useState<BarPosition>({ left: 0, width: 0 });
 
   useEffect(() => {

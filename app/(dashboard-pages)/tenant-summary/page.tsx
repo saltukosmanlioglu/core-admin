@@ -1,15 +1,14 @@
 "use client"
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Box, Grid } from '@mui/material';
 
+
 import { DashboardLayout } from '@/mui/layout/dashboard';
-
 import StatusBar from '@/components/status-bar';
-
-import { AIPerformanceBaseParamsProps } from '@/services/dashboard/base';
-import { GetDepartmentResponse } from '@/services/dashboard/department';
-import { GetInvestigatorResponse } from '@/services/dashboard/investigator';
+import { getCompanies, GetCompanyResponse } from '@/services/dashboard/company';
+import { GetModuleResponse, getModules } from '@/services/dashboard/module';
+import { TenantSummaryBaseParamsProps } from '@/services/dashboard/base';
 
 import { layoutProps } from './constants';
 import {
@@ -29,11 +28,11 @@ import {
   UserEngagement
 } from './widgets';
 
-export default function AIPerformance() {
-  const [filter, setFilter] = useState<AIPerformanceBaseParamsProps>({});
+export default function TenantSummary() {
+  const [filter, setFilter] = useState<TenantSummaryBaseParamsProps>({});
 
-  const [investigators, setInvestigators] = useState<GetInvestigatorResponse>([])
-  const [departments, setDepartments] = useState<GetDepartmentResponse>([])
+  const [companies, setCompanies] = useState<GetCompanyResponse>([]);
+  const [modules, setModules] = useState<GetModuleResponse>([])
 
   const inactiveUsers: InactiveUser[] = [
     { id: 1, name: "John Smith", roleDepartment: "Safety / Department", lastReportGenerated: "Q1 Safety Report", tokensUsedLast60Days: 150, totalTokensUsed: 150, engagementStatus: "Dormant" },
@@ -104,8 +103,18 @@ export default function AIPerformance() {
     [inactiveUsers, page, rowsPerPage]
   );
 
+  useEffect(() => {
+    getCompanies()
+      .then((res) => setCompanies(res))
+      .catch((e) => console.log(e))
+
+    getModules()
+      .then((res) => setModules(res))
+      .catch((e) => console.log(e))
+  }, [])
+
   return (
-    <DashboardLayout {...layoutProps(filter, setFilter, departments, investigators)}>
+    <DashboardLayout {...layoutProps(filter, setFilter, companies, modules)}>
       <Box id="main-layout-container">
         <Grid container spacing={2} columns={23} sx={{ mb: 2, width: '100%' }}>
           <Grid size={{ xs: 12, sm: 6, lg: 5, }} sx={{ width: '100%' }}>

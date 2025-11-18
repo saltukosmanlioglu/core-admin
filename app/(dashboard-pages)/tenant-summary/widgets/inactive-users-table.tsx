@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import DashboardCard from "@/components/dashboard-card";
 import DataTable, { DataTableColumn, DataTablePaginationProps } from "@/components/data-table";
@@ -71,15 +71,17 @@ export const InactiveUsersTable: React.FunctionComponent<InactiveUsersTableProps
 
   return (
     <DashboardCard title="Inactive Users - Feedback Opportunity">
-      <DataTable
-        rows={users}
-        columns={columns}
-        selectable={selectable}
-        selectedRowId={selectedRowId}
-        onRowSelect={onRowSelect}
-        getRowId={(row) => row.id ?? row.name}
-        pagination={pagination}
-      />
+      <Box sx={{ mt: 2 }}>
+        <DataTable
+          rows={users}
+          columns={columns}
+          selectable={selectable}
+          selectedRowId={selectedRowId}
+          onRowSelect={onRowSelect}
+          getRowId={(row) => row.id ?? row.name}
+          pagination={pagination}
+        />
+      </Box>
     </DashboardCard>
   );
 };

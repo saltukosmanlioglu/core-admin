@@ -2,7 +2,14 @@ import React, { useImperativeHandle, useRef } from "react";
 import type { EChartsType } from "echarts";
 import {
   Backdrop,
-  Box, Card, Divider, IconButton, Modal, Stack, Tooltip, Typography,
+  Box,
+  Card,
+  Divider,
+  IconButton,
+  Modal,
+  Stack,
+  Tooltip,
+  Typography,
   Zoom
 } from "@mui/material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
@@ -15,7 +22,7 @@ export interface ChartCardProps {
   title: string;
 }
 
-export type ChartChildProps = {
+export interface ChartChildProps {
   onChartReady?: (inst: EChartsType) => void;
 };
 
@@ -92,13 +99,7 @@ const DashboardCard = React.forwardRef<EChartsType, ChartCardProps>(({
         <Box>{childWithHook}</Box>
       </Card>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{ backdrop: { timeout: 400, sx: { background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", backgroundImage: "linear-gradient(120deg, rgba(164,108,194,0.10), rgba(255,255,255,0.45))" } } }}
-      >
+      <Modal open={open} onClose={handleClose} closeAfterTransition slots={{ backdrop: Backdrop }} slotProps={{ backdrop: { timeout: 400, sx: { background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", backgroundImage: "linear-gradient(120deg, rgba(164,108,194,0.10), rgba(255,255,255,0.45))" } } }}>
         <Box sx={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Zoom in={open}>
             <Box sx={{ width: "80%", height: "80%", bgcolor: "rgba(255,255,255,0.82)", borderRadius: "16px", p: 4, overflow: "hidden", boxShadow: "0 8px 32px rgba(164,108,194,0.28)", border: "1px solid rgba(164,108,194,0.18)", backdropFilter: "blur(4px)" }}>
@@ -107,7 +108,6 @@ const DashboardCard = React.forwardRef<EChartsType, ChartCardProps>(({
           </Zoom>
         </Box>
       </Modal>
-
 
     </React.Fragment>
   );

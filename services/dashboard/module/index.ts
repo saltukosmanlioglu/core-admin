@@ -1,3 +1,6 @@
 export { getModules } from "./endpoints";
 
-export type { Module, GetModuleResponse } from "./types";
+export type {
+  GetModuleResponse,
+  Module,
+} from "./types";

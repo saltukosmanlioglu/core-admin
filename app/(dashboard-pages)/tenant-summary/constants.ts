@@ -1,14 +1,14 @@
 import { DashboardLayoutProps } from "@/mui/layout/dashboard";
 
-import { AIPerformanceBaseParamsProps } from "@/services/dashboard/base";
+import { TenantSummaryBaseParamsProps } from "@/services/dashboard/base";
 import { GetCompanyResponse } from "@/services/dashboard/company";
 import { GetModuleResponse } from "@/services/dashboard/module";
 
 import { shiftDate } from "@/utils/funcs";
 
 export function layoutProps(
-  filter: AIPerformanceBaseParamsProps,
-  setFilter: React.Dispatch<React.SetStateAction<AIPerformanceBaseParamsProps>>,
+  filter: TenantSummaryBaseParamsProps,
+  setFilter: React.Dispatch<React.SetStateAction<TenantSummaryBaseParamsProps>>,
   companies: GetCompanyResponse,
   modules: GetModuleResponse,
 ): Omit<DashboardLayoutProps, "children"> {
@@ -39,18 +39,18 @@ export function layoutProps(
         text: "Company",
         dropdownList: companies.map((company) => ({
           text: company.name,
-          onClick: () => setFilter({ ...filter, investigator: company.name }),
+          onClick: () => setFilter({ ...filter, company: company.name }),
         })),
-        onClose: () => setFilter({ ...filter, investigator: undefined }),
+        onClose: () => setFilter({ ...filter, company: undefined }),
       },
       {
         type: "dropdown",
         text: "Module",
         dropdownList: modules.map((module) => ({
           text: module.name,
-          onClick: () => setFilter({ ...filter, department: module.name }),
+          onClick: () => setFilter({ ...filter, module: module.name }),
         })),
-        onClose: () => setFilter({ ...filter, department: undefined }),
+        onClose: () => setFilter({ ...filter, module: undefined }),
       },
     ],
     title: "Tenant Summary",
