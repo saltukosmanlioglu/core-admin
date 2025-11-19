@@ -56,6 +56,11 @@ const menuItems: MenuItem[] = [
     icon: <PsychologyIcon fontSize="inherit" />,
   },
   {
+    text: "Investigation Quality",
+    href: "/investigation-quality",
+    icon: <PsychologyIcon fontSize="inherit" />,
+  },
+  {
     text: "Event Description",
     icon: <DescriptionOutlinedIcon fontSize="inherit" />,
     items: [

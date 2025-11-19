@@ -1,7 +1,7 @@
 export interface ApiResponse<T> {
   data: T;
-  success?: boolean;
   message?: string;
+  success?: boolean;
 }
 
 export interface AIPerformanceBaseParamsProps {
@@ -14,6 +14,12 @@ export interface TenantSummaryBaseParamsProps {
   company?: string;
   dateRange?: string;
   module?: string;
+}
+
+export interface InvestigationQualityBaseParamsProps {
+  category?: string;
+  dateRange?: string;
+  mineSite?: string;
 }
 
 export interface HumanAndOrganisitionalFactorsBaseParamsProps {

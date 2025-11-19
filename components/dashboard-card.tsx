@@ -68,7 +68,7 @@ const DashboardCard = React.forwardRef<EChartsType, ChartCardProps>(({
 
   return (
     <React.Fragment>
-      <Card elevation={0} sx={{ borderRadius: 3, boxShadow: "0 4px 12px rgba(164, 108, 194, 0.12)", p: 2 }}>
+      <Card elevation={0} sx={{ borderRadius: 3, boxShadow: "0 4px 12px rgba(164, 108, 194, 0.12)", p: 2, height: '100%' }}>
         <Box>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             <Typography variant="h6" sx={{ color: "#000", fontSize: 16, fontWeight: 600 }}>

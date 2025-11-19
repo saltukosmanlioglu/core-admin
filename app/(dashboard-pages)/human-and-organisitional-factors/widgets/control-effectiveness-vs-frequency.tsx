@@ -18,9 +18,10 @@ export interface ControlEffectivenessVsFrequencyProps {
   data: ControlBubblePoint[];
 }
 
-export const ControlEffectivenessVsFrequency: React.FC<
-  ChildProps & ControlEffectivenessVsFrequencyProps
-> = ({ data, onChartReady }) => {
+export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChildProps & ControlEffectivenessVsFrequencyProps> = ({
+  data,
+  onChartReady
+}) => {
   const option = {
     grid: {
       left: 70,

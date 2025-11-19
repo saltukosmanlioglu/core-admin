@@ -16,9 +16,10 @@ export interface TopFailedCriticalControlsProps {
   data: FailedControl[];
 }
 
-export const TopFailedCriticalControls: React.FC<
-  ChildProps & TopFailedCriticalControlsProps
-> = ({ data, onChartReady }) => {
+export const TopFailedCriticalControls: React.FunctionComponent<ChildProps & TopFailedCriticalControlsProps> = ({
+  data,
+  onChartReady
+}) => {
   const option = {
     tooltip: {
       trigger: "axis",
