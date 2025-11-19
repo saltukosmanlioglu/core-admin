@@ -96,7 +96,7 @@ const DashboardCard = React.forwardRef<EChartsType, ChartCardProps>(({
           </Stack>
         </Box>
         <Divider sx={{ py: 0.5 }} />
-        <Box>{childWithHook}</Box>
+        <Box sx={{ mt: 2 }}>{childWithHook}</Box>
       </Card>
 
       <Modal open={open} onClose={handleClose} closeAfterTransition slots={{ backdrop: Backdrop }} slotProps={{ backdrop: { timeout: 400, sx: { background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", backgroundImage: "linear-gradient(120deg, rgba(164,108,194,0.10), rgba(255,255,255,0.45))" } } }}>

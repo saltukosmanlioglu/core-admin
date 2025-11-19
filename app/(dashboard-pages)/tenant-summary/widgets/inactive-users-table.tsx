@@ -71,17 +71,15 @@ export const InactiveUsersTable: React.FunctionComponent<InactiveUsersTableProps
 
   return (
     <DashboardCard title="Inactive Users - Feedback Opportunity">
-      <Box sx={{ mt: 2 }}>
-        <DataTable
-          rows={users}
-          columns={columns}
-          selectable={selectable}
-          selectedRowId={selectedRowId}
-          onRowSelect={onRowSelect}
-          getRowId={(row) => row.id ?? row.name}
-          pagination={pagination}
-        />
-      </Box>
+      <DataTable
+        rows={users}
+        columns={columns}
+        selectable={selectable}
+        selectedRowId={selectedRowId}
+        onRowSelect={onRowSelect}
+        getRowId={(row) => row.id ?? row.name}
+        pagination={pagination}
+      />
     </DashboardCard>
   );
 };
