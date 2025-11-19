@@ -22,6 +22,12 @@ export interface InvestigationQualityBaseParamsProps {
   mineSite?: string;
 }
 
+export interface OrganisitionalLearningNetworkBaseParamsProps {
+  incidentSeverity?: string;
+  dateRange?: string;
+  mineSite?: string;
+}
+
 export interface HumanAndOrganisitionalFactorsBaseParamsProps {
   controlType?: string;
   dateRange?: string;

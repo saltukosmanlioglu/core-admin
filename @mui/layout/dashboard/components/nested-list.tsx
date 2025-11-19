@@ -61,6 +61,11 @@ const menuItems: MenuItem[] = [
     icon: <PsychologyIcon fontSize="inherit" />,
   },
   {
+    text: "Organisitional Learning Network",
+    href: "/organisitional-learning-network",
+    icon: <PsychologyIcon fontSize="inherit" />,
+  },
+  {
     text: "Event Description",
     icon: <DescriptionOutlinedIcon fontSize="inherit" />,
     items: [
