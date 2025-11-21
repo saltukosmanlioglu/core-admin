@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
+import ChartLoader from "@/components/chart-loader";
 import DashboardCard from "@/components/dashboard-card";
 
 import { ChildProps, WordCloudProps } from "./types";
@@ -51,13 +52,17 @@ const WordCloud: React.FunctionComponent<ChildProps & WordCloudProps> = ({
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={title}>
-      <ReactECharts
+      {data && data.length !== 0 ? <ReactECharts
         onChartReady={onChartReady}
         option={option}
-        style={{ minHeight: 320, height: '100%', width: "100%" }}
-      />
+        style={{ minHeight: 320, height: '100%', width: '100%' }}
+      /> :
+        <ChartLoader />
+      }
     </DashboardCard>
   );
 };
+
+DashboardCard.displayName = "WordCloud";
 
 export default WordCloud;

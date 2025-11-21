@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
+import ChartLoader from "@/components/chart-loader";
 import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetAIVsHumanEditsResponse } from "@/services/dashboard/ai-performance/ai-vs-human-edits";
 
@@ -75,11 +76,13 @@ const AIVsHumanEdits: React.FunctionComponent<ChartChildProps & { data: GetAIVsH
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
-      <ReactECharts
+      {data && data.length !== 0 ? <ReactECharts
         onChartReady={onChartReady}
         option={option}
-        style={{ minHeight: 320, height: '100%', width: "100%" }}
-      />
+        style={{ minHeight: 320, height: '100%', width: '100%' }}
+      /> :
+        <ChartLoader />
+      }
     </DashboardCard>
   )
 };

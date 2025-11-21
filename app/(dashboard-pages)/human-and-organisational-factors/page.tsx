@@ -101,19 +101,26 @@ export default function HumanAndOrganisitionalFactors() {
     [incidents, page, rowsPerPage]
   );
 
+
   useEffect(() => {
-    filter && getKPIs(filter)
-      .then((res) => setKPI(res))
-      .catch((e) => console.log(e))
+    if (!filter) return;
 
-    getRootCauseCategories(filter)
-      .then((res) => setRootCauseCategories(res))
-      .catch(console.error);
+    const timer = setTimeout(() => {
+      filter && getKPIs(filter)
+        .then((res) => setKPI(res))
+        .catch((e) => console.log(e))
 
-    getHumanPerformanceFactors(filter)
-      .then((res) => setHumanPerformanceFactors(res))
-      .catch(console.error);
-  }, [filter])
+      getRootCauseCategories(filter)
+        .then((res) => setRootCauseCategories(res))
+        .catch(console.error);
+
+      getHumanPerformanceFactors(filter)
+        .then((res) => setHumanPerformanceFactors(res))
+        .catch(console.error);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [filter]);
 
   useEffect(() => {
     getDepartments()

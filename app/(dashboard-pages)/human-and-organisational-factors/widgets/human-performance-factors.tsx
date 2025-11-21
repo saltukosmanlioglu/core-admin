@@ -5,6 +5,7 @@ import ReactECharts from "echarts-for-react";
 
 import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetHumanPerformanceFactorsResponse } from "@/services/dashboard/human-and-organisitional-factors/human-performance-factor";
+import ChartLoader from "@/components/chart-loader";
 
 export const HumanPerformanceFactors: React.FunctionComponent<ChartChildProps & { data: GetHumanPerformanceFactorsResponse }> = ({
   data,
@@ -79,11 +80,13 @@ export const HumanPerformanceFactors: React.FunctionComponent<ChartChildProps & 
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
-      <ReactECharts
+      {data.data && data.data.length !== 0 ? <ReactECharts
         onChartReady={onChartReady}
         option={option}
-        style={{ minHeight: 320, height: "100%", width: "100%" }}
-      />
+        style={{ minHeight: 320, height: '100%', width: '100%' }}
+      /> :
+        <ChartLoader />
+      }
     </DashboardCard>
   );
 };

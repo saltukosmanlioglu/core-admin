@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
 import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
+import ChartLoader from "@/components/chart-loader";
 
 export interface RecurringCauseSeries {
   name: string;
@@ -98,11 +99,13 @@ export const RecurringCauseFrequency: React.FunctionComponent<ChartChildProps & 
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
-      <ReactECharts
-        option={option}
+      {categories && categories.length !== 0 ? <ReactECharts
         onChartReady={onChartReady}
-        style={{ width: "100%", minHeight: "320px", height: '100%' }}
-      />
+        option={option}
+        style={{ minHeight: 320, height: '100%', width: '100%' }}
+      /> :
+        <ChartLoader />
+      }
     </DashboardCard>
   );
 };

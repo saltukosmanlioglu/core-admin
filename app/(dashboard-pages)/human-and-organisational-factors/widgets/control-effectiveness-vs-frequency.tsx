@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
+import ChartLoader from "@/components/chart-loader";
 import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export type ControlBubblePoint = {
@@ -103,11 +104,13 @@ export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChartChild
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
-      <ReactECharts
+      {data && data.length !== 0 ? <ReactECharts
         onChartReady={onChartReady}
         option={option}
-        style={{ minHeight: 320, height: "100%", width: "100%" }}
-      />
+        style={{ minHeight: 320, height: '100%', width: '100%' }}
+      /> :
+        <ChartLoader />
+      }
     </DashboardCard>
   );
 };

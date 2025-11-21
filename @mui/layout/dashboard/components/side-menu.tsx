@@ -1,91 +1,75 @@
-import Image from 'next/image';
-import { styled } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Divider from '@mui/material/Divider';
-import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+"use client";
 
-import OptionsMenu from '../../../components/options-menu';
-import NestedList from './nested-list';
+import Image from "next/image";
+import { styled } from "@mui/material/styles";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
-const drawerWidth = 240;
+import OptionsMenu from "@/mui/components/options-menu";
+import NestedList from "./nested-list";
 
-const Drawer = styled(MuiDrawer)({
-  width: drawerWidth,
+const DRAWER_WIDTH = 240;
+const MINI_DRAWER_WIDTH = 72;
+
+export interface SideMenuProps {
+  expanded: boolean;
+}
+
+// 🔧 no fixed width here; add width transitions instead
+const Drawer = styled(MuiDrawer)(({ theme }) => ({
   flexShrink: 0,
-  boxSizing: 'border-box',
-  mt: 10,
+  boxSizing: "border-box",
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.shorter,
+  }),
   [`& .${drawerClasses.paper}`]: {
-    width: drawerWidth,
-    boxSizing: 'border-box',
-    backgroundColor: '#ffffff',
-    boxShadow: '2px 0 10px rgba(0,0,0,0.03)',
-    border: 'none',
+    boxSizing: "border-box",
+    backgroundColor: "#ffffff",
+    boxShadow: "2px 0 10px rgba(0,0,0,0.03)",
+    border: "none",
+    overflow: "hidden",
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.shorter,
+    }),
   },
-});
+}));
 
-export default function SideMenu() {
+export default function SideMenu({ expanded }: SideMenuProps) {
+  const mini = !expanded;
+  const drawerWidth = mini ? MINI_DRAWER_WIDTH : DRAWER_WIDTH;
+
   return (
     <Drawer
       variant="permanent"
       sx={{
-        display: { xs: 'none', md: 'block' },
+        bgcolor: "#fff",
+        display: { xs: "none", md: "block" },
+        width: drawerWidth,
         [`& .${drawerClasses.paper}`]: {
-          backgroundColor: '#fff',
+          width: drawerWidth,
+          backgroundColor: "#fff",
         },
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 'calc(var(--template-frame-height, 0px) + 4px)', p: 1.5 }}>
-        <Card
-          sx={{
-            display: 'flex',
-            gap: '8px',
-            flexGrow: 1,
-            backgroundColor: '#fff',
-            border: 'none',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
-            borderRadius: 2,
-          }}
-        >
-          <CardContent
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              py: 1.5,
-              '&:last-child': { pb: 1.5 },
-            }}
-          >
-            <Image
-              alt="Incident AI Logo"
-              className="rounded-full"
-              height={50}
-              src="/incident_AI_logo.svg"
-              width={50}
-            />
-            <Typography
-              component="h1"
-              variant="h4"
-              sx={{
-                width: '100%',
-                fontSize: 20,
-                ml: 2,
-                fontWeight: 600,
-              }}
-            >
-              Incident AI
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-
-      <Divider sx={{ opacity: 0.35 }} />
-
-      <Box sx={{ overflow: 'auto', height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <NestedList />
+      <Box
+        sx={{
+          overflow: "auto",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          pt: 1,
+          mt: 7,
+        }}
+      >
+        <NestedList mini={mini} />
       </Box>
 
       <Stack
@@ -93,9 +77,10 @@ export default function SideMenu() {
         sx={{
           p: 2,
           gap: 1,
-          alignItems: 'center',
-          backgroundColor: '#fff',
-          boxShadow: '0 -2px 8px rgba(0,0,0,0.03)',
+          alignItems: "center",
+          backgroundColor: "#fff",
+          boxShadow: "0 -2px 8px rgba(0,0,0,0.03)",
+          justifyContent: mini ? "center" : "flex-start",
         }}
       >
         <Avatar
@@ -105,24 +90,26 @@ export default function SideMenu() {
           sx={{
             width: 36,
             height: 36,
-            boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
+            boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
           }}
         />
-        <Box sx={{ mr: 'auto' }}>
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 600,
-              lineHeight: '16px',
-            }}
-          >
-            Mine Guard
-          </Typography>
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            info@mgai.com
-          </Typography>
-        </Box>
-        <OptionsMenu />
+        {!mini && (
+          <Box sx={{ mr: "auto" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: 600,
+                lineHeight: "16px",
+              }}
+            >
+              Mine Guard
+            </Typography>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              info@mgai.com
+            </Typography>
+          </Box>
+        )}
+        {!mini && <OptionsMenu />}
       </Stack>
     </Drawer>
   );

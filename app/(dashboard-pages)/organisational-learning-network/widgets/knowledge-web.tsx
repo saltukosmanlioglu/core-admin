@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
 import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
+import ChartLoader from "@/components/chart-loader";
 
 export interface KnowledgeWebNode {
   id: string;
@@ -136,11 +137,13 @@ export const KnowledgeWeb: React.FunctionComponent<ChartChildProps & KnowledgeWe
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
-      <ReactECharts
-        option={option}
+      {data && data.nodes.length !== 0 ? <ReactECharts
         onChartReady={onChartReady}
-        style={{ width: "100%", minHeight: 480, height: '100%' }}
-      />
+        option={option}
+        style={{ minHeight: 480, height: '100%', width: '100%' }}
+      /> :
+        <ChartLoader height={480} />
+      }
     </DashboardCard>
   );
 };

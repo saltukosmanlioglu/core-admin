@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
+import ChartLoader from "@/components/chart-loader";
 import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export interface InvestigationQualityCategoryPoint {
@@ -95,16 +96,16 @@ export const InvestigationQualityByCategory: React.FunctionComponent<ChartChildP
 
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
-      <div style={{ width: "100%", height: "100%" }}>
+      {data && data.length !== 0 ? <div style={{ width: "100%", height: "100%" }}>
         <ReactECharts
           onChartReady={onChartReady}
           option={option}
-          style={{
-            width: "100%",
-            minHeight: '100%',
-          }}
+          style={{ minHeight: 320, height: '100%', width: '100%' }}
         />
       </div>
+        :
+        <ChartLoader />
+      }
     </DashboardCard>
   );
 };

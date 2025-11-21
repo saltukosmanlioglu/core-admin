@@ -38,21 +38,27 @@ export default function AIPerformance() {
   const [topKeywords, setTopKeywords] = useState<GetTopKeywordsResponse>([]);
 
   useEffect(() => {
-    filter && getKPIs(filter)
-      .then((res) => setKPI(res))
-      .catch((e) => console.log(e))
+    if (!filter) return;
 
-    getInvestigationTime(filter)
-      .then((res) => setInvestigationTime(res))
-      .catch((e) => console.log(e))
+    const timer = setTimeout(() => {
+      getKPIs(filter)
+        .then((res) => setKPI(res))
+        .catch((e) => console.log(e));
 
-    getAIVsHumanEdits(filter)
-      .then((res) => setPoints(res))
-      .catch((e) => console.log(e))
+      getInvestigationTime(filter)
+        .then((res) => setInvestigationTime(res))
+        .catch((e) => console.log(e));
 
-    getTopKeywords(filter)
-      .then((res) => setTopKeywords(res))
-      .catch((e) => console.log(e))
+      getAIVsHumanEdits(filter)
+        .then((res) => setPoints(res))
+        .catch((e) => console.log(e));
+
+      getTopKeywords(filter)
+        .then((res) => setTopKeywords(res))
+        .catch((e) => console.log(e));
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, [filter]);
 
   useEffect(() => {
@@ -68,22 +74,20 @@ export default function AIPerformance() {
   return (
     <DashboardLayout {...layoutProps(filter, setFilter, departments, investigators)}>
       <Grid container spacing={2} columns={12} sx={{ mb: (theme) => theme.spacing(2), width: '100%' }}>
-        {KPI && (
-          <Grid container spacing={2} columns={12} sx={{ mb: 2, width: '100%' }}>
-            <Grid size={{ xs: 12, sm: 6, lg: 3, }} sx={{ width: '100%' }}>
-              <ReportsGeneratedByAI data={KPI} />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-              <AIOutputAcceptanceRate data={KPI} />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-              <AverageTimeSavedPerCase data={KPI} />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-              <TotalHumanReviewEdits data={KPI} />
-            </Grid>
+        <Grid container spacing={2} columns={12} sx={{ mb: 2, width: '100%' }}>
+          <Grid size={{ xs: 12, sm: 6, lg: 3, }} sx={{ width: '100%' }}>
+            <ReportsGeneratedByAI data={KPI} />
           </Grid>
-        )}
+          <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+            <AIOutputAcceptanceRate data={KPI} />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+            <AverageTimeSavedPerCase data={KPI} />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+            <TotalHumanReviewEdits data={KPI} />
+          </Grid>
+        </Grid>
       </Grid>
 
       <Typography component="h1" variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
