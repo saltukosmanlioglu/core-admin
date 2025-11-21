@@ -1,25 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetHumanPerformanceFactorsResponse } from "@/services/dashboard/human-and-organisitional-factors/human-performance-factor";
 
-import { ChildProps } from "./types";
+export const HumanPerformanceFactors: React.FunctionComponent<ChartChildProps & { data: GetHumanPerformanceFactorsResponse }> = ({
+  data,
+  onChartReady
+}) => {
+  const [fullscreen, setFullscreen] = useState(false);
 
-export const HumanPerformanceFactors: React.FunctionComponent<
-  ChildProps & { data: GetHumanPerformanceFactorsResponse }
-> = ({ data, onChartReady }) => {
+  const titleOfChart = "Human Performance Factors"
 
-  // 🔥 Generate row count based on incoming data (0-based index → +1)
   const maxRowIndex =
     data.data.reduce((max, item) => (item.y > max ? item.y : max), 0) + 1;
 
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: { show: false },
-
-    grid: { left: 50, right: 60, top: 20, bottom: 40 },
 
     xAxis: {
       type: "category",
@@ -75,7 +78,7 @@ export const HumanPerformanceFactors: React.FunctionComponent<
   };
 
   return (
-    <DashboardCard title="Human Performance Factors">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

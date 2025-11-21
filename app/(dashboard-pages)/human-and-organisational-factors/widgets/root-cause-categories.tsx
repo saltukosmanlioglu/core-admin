@@ -1,36 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetRootCauseCategoriesResponse } from "@/services/dashboard/human-and-organisitional-factors/root-cause-category";
-
-import { ChildProps } from "./types";
 
 export interface RootCauseCategoriesProps {
   data: GetRootCauseCategoriesResponse;
 }
 
-export const RootCauseCategories: React.FunctionComponent<ChildProps & RootCauseCategoriesProps> = ({
+export const RootCauseCategories: React.FunctionComponent<ChartChildProps & RootCauseCategoriesProps> = ({
   data,
   onChartReady,
 }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Root Cause Categories"
+
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "shadow" },
     },
     legend: {
-      top: 0,
+      bottom: 0,
       left: "center",
       textStyle: { color: "#475467", fontSize: 12 },
-    },
-    grid: {
-      left: 40,
-      right: 20,
-      top: 40,
-      bottom: 40,
+      itemGap: 12
     },
     xAxis: {
       type: "category",
@@ -73,7 +74,7 @@ export const RootCauseCategories: React.FunctionComponent<ChildProps & RootCause
 
 
   return (
-    <DashboardCard title="Root Cause Categories">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

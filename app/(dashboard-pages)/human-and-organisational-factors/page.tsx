@@ -19,8 +19,14 @@ import {
   OrganisitonalCauses,
   TotalICAMCasesAnalysed
 } from './widgets/kpi';
-import { ControlEffectivenessVsFrequency, DrilldownTable, HumanPerformanceFactors, RootCauseCategories, TopFailedCriticalFactors } from './widgets';
-import { DrilldownIncident } from './widgets/drilldown-table';
+import {
+  ControlEffectivenessVsFrequency,
+  type DrilldownIncident,
+  DrilldownTable,
+  HumanPerformanceFactors,
+  RootCauseCategories,
+  TopFailedCriticalFactors
+} from './widgets';
 
 export default function HumanAndOrganisitionalFactors() {
   const [filter, setFilter] = useState<HumanAndOrganisitionalFactorsBaseParamsProps>({});

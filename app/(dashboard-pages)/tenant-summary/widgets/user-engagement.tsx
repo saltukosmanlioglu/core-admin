@@ -1,22 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetUserEngagementResponse } from "@/services/dashboard/tenant-summary/user-engagement";
 
-import { ChildProps } from "./types";
-
-export interface UserEngagementProps {
-
-}
-
-export const UserEngagement: React.FunctionComponent<ChildProps & { data: GetUserEngagementResponse }> = ({
+export const UserEngagement: React.FunctionComponent<ChartChildProps & { data: GetUserEngagementResponse }> = ({
   data,
   onChartReady,
 }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "User Engagement Segments"
+
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: {
       trigger: "item",
       formatter: "{b}: {c} ({d}%)",
@@ -27,34 +29,20 @@ export const UserEngagement: React.FunctionComponent<ChildProps & { data: GetUse
         type: "pie",
         radius: "50%",
         center: ["50%", "50%"],
-        label: {
-          show: true,
-          formatter: "{b}",
-          fontSize: 14,
-        },
-        labelLine: {
-          show: true,
-          length: 15,
-          length2: 10,
-        },
+        label: { show: true, formatter: "{b}", fontSize: 14 },
+        labelLine: { show: true, length: 15, length2: 10, },
         data: data.map((item) => ({
           value: item.value,
           name: item.name,
           itemStyle: { color: item.color },
         })),
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: "rgba(0,0,0,0.5)",
-          },
-        },
+        emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: "rgba(0,0,0,0.5)" } },
       },
     ],
   };
 
   return (
-    <DashboardCard title="User Engagement Segments">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

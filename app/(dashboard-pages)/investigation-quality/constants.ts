@@ -1,8 +1,8 @@
 import { DashboardLayoutProps } from "@/mui/layout/dashboard";
 
-import { InvestigationQualityBaseParamsProps } from "@/services/dashboard/base";
 import { GetCategoryResponse } from "@/services/dashboard/category";
 import { GetMineSiteResponse } from "@/services/dashboard/mine-site";
+import { InvestigationQualityBaseParamsProps } from "@/services/dashboard/base";
 
 import { shiftDate } from "@/utils/funcs";
 

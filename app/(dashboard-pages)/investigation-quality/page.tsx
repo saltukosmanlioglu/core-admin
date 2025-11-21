@@ -1,14 +1,14 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { DashboardLayout } from '@/mui/layout/dashboard';
 import StatusCard, { StatusCardProps } from '@/components/status-card';
-import { InvestigationQualityBaseParamsProps } from '@/services/dashboard/base';
-import { GetMineSiteResponse, getMineSites } from '@/services/dashboard/mine-site';
 import { getCategories, GetCategoryResponse } from '@/services/dashboard/category';
 import { GetKPIResponse, getKPIs } from '@/services/dashboard/investigation-quality/KPIs';
+import { GetMineSiteResponse, getMineSites } from '@/services/dashboard/mine-site';
+import { InvestigationQualityBaseParamsProps } from '@/services/dashboard/base';
 
 import { layoutProps } from './constants';
 import {
@@ -17,7 +17,10 @@ import {
   MostFrequentImprovedTheme,
   NumerOfInvestigationsReviewed
 } from './widgets/kpi';
-import { InvestigationQualityByCategory, InvestigationQualityScoreBar } from './widgets';
+import {
+  InvestigationQualityByCategory,
+  InvestigationQualityScoreBar
+} from './widgets';
 
 export default function InvestigationQuality() {
   const [filter, setFilter] = useState<InvestigationQualityBaseParamsProps>({});

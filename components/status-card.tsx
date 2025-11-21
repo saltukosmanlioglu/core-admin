@@ -35,7 +35,7 @@ export interface StatusCardProps {
   onViewDetails?: () => void;
 }
 
-const StatusCard: React.FC<StatusCardProps> = ({
+const StatusCard: React.FunctionComponent<StatusCardProps> = ({
   title,
   progress,
   status,

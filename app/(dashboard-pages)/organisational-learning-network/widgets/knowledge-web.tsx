@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export interface KnowledgeWebNode {
   id: string;
@@ -13,7 +12,7 @@ export interface KnowledgeWebNode {
   symbolSize: number;
   x: number;
   y: number;
-  category: number; // IMPORTANT: backend sends index (0-4)
+  category: number;
 }
 
 export interface KnowledgeWebLink {
@@ -35,11 +34,19 @@ export interface KnowledgeWebProps {
   data: KnowledgeWebData;
 }
 
-export const KnowledgeWeb: React.FC<ChildProps & KnowledgeWebProps> = ({
+export const KnowledgeWeb: React.FunctionComponent<ChartChildProps & KnowledgeWebProps> = ({
   data,
   onChartReady,
 }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Knowledge Web"
+
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     backgroundColor: "transparent",
 
     tooltip: {
@@ -128,7 +135,7 @@ export const KnowledgeWeb: React.FC<ChildProps & KnowledgeWebProps> = ({
   };
 
   return (
-    <DashboardCard title="Knowledge Web">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         option={option}
         onChartReady={onChartReady}

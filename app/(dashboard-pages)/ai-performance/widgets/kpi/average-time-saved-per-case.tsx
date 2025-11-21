@@ -2,6 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 
 import { KPICard } from "@/components/kpi-card";
+
 import { KPI } from "@/services/dashboard/ai-performance/KPIs";
 
 export const AverageTimeSavedPerCase: React.FunctionComponent<{ data: Pick<KPI, 'averageTimeSavedPerCase'> }> = ({

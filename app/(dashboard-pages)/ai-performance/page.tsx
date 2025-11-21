@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 
 import { DashboardLayout } from '@/mui/layout/dashboard';
-
+import { WordCloud } from '@/components/word-cloud';
 import { AIPerformanceBaseParamsProps } from '@/services/dashboard/base';
 import { getAIVsHumanEdits, GetAIVsHumanEditsResponse } from '@/services/dashboard/ai-performance/ai-vs-human-edits';
 import { GetInvestigationTimeResponse, getInvestigationTime } from '@/services/dashboard/ai-performance/investigation-time';
@@ -24,7 +24,6 @@ import {
   AIVsHumanEdits,
   AcceptanceRateByInvestigators,
   InvestigationTime,
-  TopKeywords
 } from './widgets';
 
 export default function AIPerformance() {
@@ -102,7 +101,7 @@ export default function AIPerformance() {
           <AIVsHumanEdits data={points} />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <TopKeywords data={topKeywords} />
+          <WordCloud title="Top Keywords in AI Findings" data={topKeywords} />
         </Grid>
       </Grid>
     </DashboardLayout>

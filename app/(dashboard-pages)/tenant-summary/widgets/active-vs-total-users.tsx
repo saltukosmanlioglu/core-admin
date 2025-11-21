@@ -1,22 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
-
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export interface ActiveVsTotalUsersProps {
-  percentage: number;
   daysUntilExpiry: number;
+  percentage: number;
 }
 
-export const ActiveVsTotalUsers: React.FunctionComponent<
-  ChildProps & ActiveVsTotalUsersProps
-> = ({ percentage, daysUntilExpiry, onChartReady }) => {
+export const ActiveVsTotalUsers: React.FunctionComponent<ChartChildProps & ActiveVsTotalUsersProps> = ({
+  percentage,
+  daysUntilExpiry,
+  onChartReady
+}) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Active vs Total Users (%)"
 
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: { show: false },
     legend: { show: false },
     series: [
@@ -28,36 +35,19 @@ export const ActiveVsTotalUsers: React.FunctionComponent<
         startAngle: 210,
         endAngle: -30,
         pointer: { show: false },
-        progress: {
-          show: true,
-          width: 12,
-          roundCap: true,
-          itemStyle: { color: "#2563eb" },
-        },
-        axisLine: {
-          lineStyle: {
-            width: 12,
-            color: [[1, "#f97316"]],
-          },
-        },
+        progress: { show: true, width: 12, roundCap: true, itemStyle: { color: "#2563eb" } },
+        axisLine: { lineStyle: { width: 12, color: [[1, "#f97316"]], } },
         splitLine: { show: false },
         axisTick: { show: false },
         axisLabel: { show: false },
-        detail: {
-          valueAnimation: true,
-          formatter: "{value}%",
-          fontSize: 36,
-          fontWeight: 700,
-          offsetCenter: [0, "15%"],
-          color: "#111827",
-        },
+        detail: { valueAnimation: true, formatter: "{value}%", fontSize: 36, fontWeight: 700, offsetCenter: [0, "15%"], color: "#111827", },
         data: [{ value: percentage }],
       },
     ],
   };
 
   return (
-    <DashboardCard title="Active vs Total Users (%)">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

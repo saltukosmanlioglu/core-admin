@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
-
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export interface InvestigationQualityCategoryPoint {
   category: string;
@@ -16,21 +14,20 @@ export interface InvestigationQualityByCategoryProps {
   data: InvestigationQualityCategoryPoint[];
 }
 
-export const InvestigationQualityByCategory: React.FC<
-  ChildProps & InvestigationQualityByCategoryProps
-> = ({ data, onChartReady }) => {
-  const categories = data.map((d) => d.category);
-  const values = data.map((d) => d.value);
+export const InvestigationQualityByCategory: React.FunctionComponent<ChartChildProps & InvestigationQualityByCategoryProps> = ({
+  data,
+  onChartReady
+}) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Investigation Quality by Category"
 
   const option = {
-    tooltip: { trigger: "item" },
-
-    grid: {
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
+    title: {
+      show: fullscreen,
+      text: titleOfChart
     },
+    tooltip: { trigger: "item" },
 
     radar: {
       radius: "70%",
@@ -64,7 +61,7 @@ export const InvestigationQualityByCategory: React.FC<
         },
       },
 
-      indicator: categories.map((c) => ({
+      indicator: data.map((d) => d.category).map((c) => ({
         name: c,
         max: 100,
       })),
@@ -75,7 +72,7 @@ export const InvestigationQualityByCategory: React.FC<
         type: "radar",
         data: [
           {
-            value: values,
+            value: data.map((d) => d.value),
             areaStyle: {
               color: "rgba(80,200,200,0.35)",
             },
@@ -97,7 +94,7 @@ export const InvestigationQualityByCategory: React.FC<
   };
 
   return (
-    <DashboardCard title="Investigation Quality by Category">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <div style={{ width: "100%", height: "100%" }}>
         <ReactECharts
           onChartReady={onChartReady}

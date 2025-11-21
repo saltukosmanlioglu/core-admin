@@ -1,7 +1,14 @@
 import * as React from "react";
 import {
-  List, ListSubheader, ListItemButton, ListItemIcon, ListItemText, Collapse
+  List,
+  ListSubheader,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
 } from "@mui/material";
+
+import { usePathname } from "next/navigation";
 
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -9,30 +16,20 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import SendIcon from "@mui/icons-material/Send";
 import StarBorder from "@mui/icons-material/StarBorder";
 
-import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
-import ChecklistRtlOutlinedIcon from '@mui/icons-material/ChecklistRtlOutlined';
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import DifferenceOutlinedIcon from '@mui/icons-material/DifferenceOutlined';
-import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
-import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
-import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
-import PsychologyIcon from "@mui/icons-material/Psychology";
-import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
-import SlideshowOutlinedIcon from '@mui/icons-material/SlideshowOutlined';
-import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
-import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
-import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
-import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
-
+import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
+import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
+import HubOutlinedIcon from "@mui/icons-material/HubOutlined";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
+import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
 
 type MenuItem =
   | { text: string; href: string; icon?: React.ReactNode }
-  | { text: string; items: { text: string; href: string; icon?: React.ReactNode }[]; icon?: React.ReactNode };
+  | {
+    text: string;
+    items: { text: string; href: string; icon?: React.ReactNode }[];
+    icon?: React.ReactNode;
+  };
 
 const menuItems: MenuItem[] = [
   {
@@ -43,76 +40,57 @@ const menuItems: MenuItem[] = [
   {
     text: "AI Performance",
     href: "/ai-performance",
-    icon: <PsychologyIcon fontSize="inherit" />,
+    icon: <InsightsOutlinedIcon fontSize="inherit" />,
   },
   {
     text: "Tenant Summary",
     href: "/tenant-summary",
-    icon: <PsychologyIcon fontSize="inherit" />,
+    icon: <ApartmentOutlinedIcon fontSize="inherit" />,
   },
   {
-    text: "Human and Organisitional Factory",
-    href: "/human-and-organisitional-factors",
-    icon: <PsychologyIcon fontSize="inherit" />,
+    text: "Human and Organisational Factors",
+    href: "/human-and-organisational-factors",
+    icon: <GroupsOutlinedIcon fontSize="inherit" />,
   },
   {
     text: "Investigation Quality",
     href: "/investigation-quality",
-    icon: <PsychologyIcon fontSize="inherit" />,
-  },
-  {
-    text: "Organisitional Learning Network",
-    href: "/organisitional-learning-network",
-    icon: <PsychologyIcon fontSize="inherit" />,
-  },
-  {
-    text: "Event Description",
-    icon: <DescriptionOutlinedIcon fontSize="inherit" />,
-    items: [
-      { text: "Brief", href: "/event-description/brief", icon: <SummarizeOutlinedIcon fontSize="inherit" /> },
-      { text: "Detailed", href: "/event-description/detailed", icon: <DescriptionOutlinedIcon fontSize="inherit" /> },
-    ],
-  },
-  {
-    text: "Evidence Collection",
-    icon: <Inventory2OutlinedIcon fontSize="inherit" />,
-    items: [
-      { text: "Discrepancy Analysis", href: "/evidence-collection/discrepancy-analysis", icon: <DifferenceOutlinedIcon fontSize="inherit" /> },
-      { text: "Follow-up Interview", href: "/evidence-collection/follow-up-interview", icon: <RecordVoiceOverOutlinedIcon fontSize="inherit" /> },
-      { text: "PEEPO Builder", href: "/evidence-collection/peepo-builder", icon: <BuildCircleOutlinedIcon fontSize="inherit" /> },
-    ],
-  },
-  {
-    text: "ICAM Analysis",
-    icon: <AccountTreeOutlinedIcon fontSize="inherit" />,
-    items: [
-      { text: "Timeline and 5 Whys", href: "/icam-analysis/timeline-and-5-whys", icon: <TimelineOutlinedIcon fontSize="inherit" /> },
-      { text: "ICAM Table", href: "/icam-analysis/icam-table", icon: <TableChartOutlinedIcon fontSize="inherit" /> },
-      { text: "Contributing Factors", href: "/icam-analysis/contributing-factors", icon: <InsightsOutlinedIcon fontSize="inherit" /> },
-      { text: "Root Cause Analysis", href: "/icam-analysis/root-cause-analysis", icon: <PsychologyAltOutlinedIcon fontSize="inherit" /> },
-      { text: "Organisational Learnings", href: "/icam-analysis/organisational-learnings", icon: <EmojiObjectsOutlinedIcon fontSize="inherit" /> },
-    ],
-  },
-  {
-    text: "Evaluation",
     icon: <FactCheckOutlinedIcon fontSize="inherit" />,
-    items: [
-      { text: "Quality Review", href: "/evaluation/quality-review", icon: <ChecklistRtlOutlinedIcon fontSize="inherit" /> },
-      { text: "Sense Check", href: "/evaluation/sense-check", icon: <TaskAltOutlinedIcon fontSize="inherit" /> },
-    ],
   },
   {
-    text: "Presentation",
-    icon: <SlideshowOutlinedIcon fontSize="inherit" />,
-    items: [
-      { text: "Incident Narrative", href: "/presentation/incident-narrative", icon: <ArticleOutlinedIcon fontSize="inherit" /> },
-    ],
+    text: "Organisational Learning Network",
+    href: "/organisational-learning-network",
+    icon: <HubOutlinedIcon fontSize="inherit" />,
   },
 ];
 
+// base style generator: adds "active" variant
+const getItemSx = (active: boolean) => ({
+  mx: 1,
+  my: 0.25,
+  borderRadius: 2,
+  transition: "background-color 0.15s ease, color 0.15s ease",
+  "& .MuiListItemIcon-root": {
+    fontSize: 20,
+    color: active ? "#5b2fa3" : "#1f2933",
+  },
+  "& .MuiTypography-root": {
+    fontSize: 14,
+    fontWeight: 500,
+    color: active ? "#5b2fa3" : "#111827",
+  },
+  backgroundColor: active ? "rgba(164,108,194,0.16)" : "transparent",
+  "&:hover": {
+    backgroundColor: "rgba(164,108,194,0.10)", // soft purple hover
+    "& .MuiListItemIcon-root, & .MuiTypography-root": {
+      color: "#6E3BB8",
+    },
+  },
+});
 
 export default function NestedList() {
   const [openMap, setOpenMap] = React.useState<Record<number, boolean>>({});
+  const pathname = usePathname();
 
   const toggle = (i: number) =>
     setOpenMap((prev) => ({ ...prev, [i]: !prev[i] }));
@@ -128,41 +106,76 @@ export default function NestedList() {
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
+        <ListSubheader
+          component="div"
+          id="nested-list-subheader"
+          sx={{ bgcolor: "background.paper", pb: 1 }}
+        >
           Operations
         </ListSubheader>
       }
     >
       {menuItems.map((m, i) => {
         const isGroup = "items" in m;
+
+        // active logic for top-level items
+        const isActive = !isGroup && pathname === m.href;
+
         if (!isGroup) {
           return (
-            <ListItemButton key={i} href={m.href}>
-              <ListItemIcon>{m.icon ?? <SendIcon fontSize="inherit" />}</ListItemIcon>
+            <ListItemButton
+              key={i}
+              href={m.href}
+              sx={getItemSx(isActive)}
+            >
+              <ListItemIcon>
+                {m.icon ?? <SendIcon fontSize="inherit" />}
+              </ListItemIcon>
               <ListItemText sx={{ ml: 1 }} primary={m.text} />
             </ListItemButton>
           );
         }
 
         const open = !!openMap[i];
+
+        // consider group active if any of its children matches
+        const groupActive =
+          m.items.some((sm) => pathname.startsWith(sm.href));
+
         return (
           <React.Fragment key={i}>
-            <ListItemButton onClick={() => toggle(i)}>
-              <ListItemIcon>{m.icon ?? <InboxIcon fontSize="inherit" />}</ListItemIcon>
+            <ListItemButton
+              onClick={() => toggle(i)}
+              sx={getItemSx(groupActive)}
+            >
+              <ListItemIcon>
+                {m.icon ?? <InboxIcon fontSize="inherit" />}
+              </ListItemIcon>
               <ListItemText sx={{ ml: 1 }} primary={m.text} />
-              {open ? <ExpandLess fontSize="inherit" /> : <ExpandMore fontSize="inherit" />}
+              {open ? (
+                <ExpandLess fontSize="inherit" />
+              ) : (
+                <ExpandMore fontSize="inherit" />
+              )}
             </ListItemButton>
 
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                {m.items.map((sm, si) => (
-                  <ListItemButton key={si} href={sm.href} sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      {sm.icon ?? <StarBorder fontSize="inherit" />}
-                    </ListItemIcon>
-                    <ListItemText sx={{ ml: 1 }} primary={sm.text} />
-                  </ListItemButton>
-                ))}
+                {m.items.map((sm, si) => {
+                  const childActive = pathname === sm.href;
+                  return (
+                    <ListItemButton
+                      key={si}
+                      href={sm.href}
+                      sx={{ ...getItemSx(childActive), pl: 4 }}
+                    >
+                      <ListItemIcon>
+                        {sm.icon ?? <StarBorder fontSize="inherit" />}
+                      </ListItemIcon>
+                      <ListItemText sx={{ ml: 1 }} primary={sm.text} />
+                    </ListItemButton>
+                  );
+                })}
               </List>
             </Collapse>
           </React.Fragment>

@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
-
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export type ControlBubblePoint = {
   label: string;
@@ -18,16 +16,18 @@ export interface ControlEffectivenessVsFrequencyProps {
   data: ControlBubblePoint[];
 }
 
-export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChildProps & ControlEffectivenessVsFrequencyProps> = ({
+export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChartChildProps & ControlEffectivenessVsFrequencyProps> = ({
   data,
   onChartReady
 }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Control Effectiveness vs Frequency"
+
   const option = {
-    grid: {
-      left: 70,
-      right: 20,
-      top: 30,
-      bottom: 60,
+    title: {
+      show: fullscreen,
+      text: titleOfChart
     },
     tooltip: {
       trigger: "item",
@@ -69,7 +69,6 @@ export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChildProps
         type: "scatter",
         name: "Controls",
         data: [
-          // [frequency, effectiveness, impact]
           [2, 3.2, 30],
           [4, 2.5, 60],
           [6, 4.1, 80],
@@ -79,7 +78,6 @@ export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChildProps
         symbolSize: (val: unknown) => {
           const [, , rawImpact] = val as number[];
 
-          // impact 20–100  →  bubble 24–80 px
           const minImpact = 20;
           const maxImpact = 100;
           const minSize = 24;
@@ -104,7 +102,7 @@ export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChildProps
 
 
   return (
-    <DashboardCard title="Control Effectiveness vs Frequency">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

@@ -21,9 +21,10 @@ export interface SuggestedReengagementActionsProps {
   onToggle?: (id: string, enabled: boolean) => void;
 }
 
-export const SuggestedReengagementActions: React.FunctionComponent<
-  SuggestedReengagementActionsProps
-> = ({ actions, onToggle }) => {
+export const SuggestedReengagementActions: React.FunctionComponent<SuggestedReengagementActionsProps> = ({
+  actions,
+  onToggle
+}) => {
   return (
     <DashboardCard title="Suggested Re-engagement Actions">
       <Stack spacing={1.5}>

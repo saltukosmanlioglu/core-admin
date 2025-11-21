@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
-import DashboardCard from "@/components/dashboard-card";
 
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export interface RecurringCauseSeries {
   name: string;
@@ -25,10 +24,20 @@ const COLORS = [
   "#0EA5E9",
 ];
 
-export const RecurringCauseFrequency: React.FC<
-  ChildProps & RecurringCauseChartProps
-> = ({ categories, series, onChartReady }) => {
+export const RecurringCauseFrequency: React.FunctionComponent<ChartChildProps & RecurringCauseChartProps> = ({
+  categories,
+  series,
+  onChartReady
+}) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Recurring Cause Frequency Over Time"
+
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     backgroundColor: "transparent",
 
     tooltip: {
@@ -61,7 +70,8 @@ export const RecurringCauseFrequency: React.FC<
 
     legend: {
       show: true,
-      top: 5,
+      top: 0,
+      left: 'center',
       textStyle: { color: "#111827", fontWeight: 500 },
     },
 
@@ -87,7 +97,7 @@ export const RecurringCauseFrequency: React.FC<
   };
 
   return (
-    <DashboardCard title="Recurring Cause Frequency Over Time">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         option={option}
         onChartReady={onChartReady}

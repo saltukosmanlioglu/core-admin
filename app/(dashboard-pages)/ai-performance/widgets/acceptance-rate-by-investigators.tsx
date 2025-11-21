@@ -1,31 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
-import * as echarts from "echarts/core";
-import {
-  TooltipComponent,
-  TooltipComponentOption,
-  GridComponent,
-  GridComponentOption,
-  TitleComponent,
-  TitleComponentOption,
-} from "echarts/components";
-import { BarChart, BarSeriesOption } from "echarts/charts";
-import { CanvasRenderer } from "echarts/renderers";
 
-import DashboardCard from "@/components/dashboard-card";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
-import { ChildProps } from "./types";
+const AcceptanceRateByInvestigators: React.FunctionComponent<ChartChildProps> = ({
+  onChartReady
+}) => {
+  const [fullscreen, setFullscreen] = useState(false);
 
-echarts.use([TooltipComponent, GridComponent, TitleComponent, BarChart, CanvasRenderer]);
+  const titleOfChart = 'AI Output Acceptance Rate By Investigator'
 
-type EChartsOption = echarts.ComposeOption<
-  TooltipComponentOption | GridComponentOption | TitleComponentOption | BarSeriesOption
->;
-
-const AcceptanceRateByInvestigators: React.FunctionComponent<ChildProps> = ({ onChartReady }) => {
-  const option: EChartsOption = {
+  const option = {
     title: {
-      show: false,
+      show: fullscreen,
+      text: titleOfChart
     },
     tooltip: {
       trigger: 'axis',
@@ -143,7 +131,7 @@ const AcceptanceRateByInvestigators: React.FunctionComponent<ChildProps> = ({ on
   };
 
   return (
-    <DashboardCard title="AI Output Acceptance Rate By Investigator">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

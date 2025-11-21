@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Box, Grid } from '@mui/material';
 
 import { DashboardLayout } from '@/mui/layout/dashboard';
+import { WordCloud } from '@/components/word-cloud';
 import { GetEmergingThemeResponse, getEmergingThemes } from '@/services/dashboard/organisitional-learning-network/emerging-theme';
 import { getIncidentSeverities, GetIncidentSeverityResponse } from '@/services/dashboard/incident-severity';
 import { GetKPIResponse, getKPIs } from '@/services/dashboard/organisitional-learning-network/KPIs';
@@ -17,10 +18,9 @@ import {
   TotalIncidentMapped
 } from './widgets/kpi';
 import {
-  EmergingThemes,
+  KnowledgeWeb,
   RecurringCauseFrequency
 } from './widgets';
-import KnowledgeWeb, { KnowledgeWebData } from './widgets/knowledge-web';
 
 import knowledgeWebData from './widgets/knowledge_web.json'
 
@@ -86,7 +86,7 @@ export default function OrganisitionalLearningNetwork() {
             />
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <EmergingThemes data={emergingThemes} />
+            <WordCloud data={emergingThemes} title="Emerging Themes Accross Investigation" />
           </Grid>
         </Grid>
       </Box>

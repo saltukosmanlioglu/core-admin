@@ -31,9 +31,11 @@ export default function DashboardLayout({
           <Stack spacing={2} sx={{ alignItems: 'center', mx: 3, pb: 5, mt: { xs: 8, md: 0 } }}>
             <Header breadcrumbItems={breadcrumbItems} buttons={buttons} />
             <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
-              {title && <Typography component="h1" variant="h4" sx={{ mb: 2, fontWeight: 700 }}>
-                {title}
-              </Typography>}
+              {title && (
+                <Typography component="h1" variant="h4" sx={{ mb: 2, fontWeight: 700 }}>
+                  {title}
+                </Typography>
+              )}
               <Paper elevation={0}
                 sx={{
                   p: 3,

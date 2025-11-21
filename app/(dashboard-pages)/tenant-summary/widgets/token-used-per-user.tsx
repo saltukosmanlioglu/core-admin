@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
-
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export type TokensUsedPoint = {
   label: string;
@@ -17,13 +15,20 @@ export interface TokensUsedPerUserProps {
   data: TokensUsedPoint[];
 }
 
-export const TokensUsedPerUser: React.FunctionComponent<ChildProps & TokensUsedPerUserProps> = ({
+export const TokensUsedPerUser: React.FunctionComponent<ChartChildProps & TokensUsedPerUserProps> = ({
   data,
   onChartReady,
 }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Tokens Used per User (Last 30 Days)"
+
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
-    grid: { left: 35, right: 10, top: 30, bottom: 40 },
     xAxis: {
       type: "category",
       data: data.map((d) => d.label),
@@ -59,7 +64,7 @@ export const TokensUsedPerUser: React.FunctionComponent<ChildProps & TokensUsedP
   };
 
   return (
-    <DashboardCard title="Tokens Used per User (Last 30 Days)">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

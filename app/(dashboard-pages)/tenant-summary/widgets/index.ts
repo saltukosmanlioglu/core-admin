@@ -5,5 +5,4 @@ export { default as TokensUsedPerUser } from './token-used-per-user'
 export { default as UserActivity } from './user-activity'
 export { default as UserEngagement } from './user-engagement'
 
-export type { ChildProps } from './types'
 export type { InactiveUser } from './inactive-users-table'

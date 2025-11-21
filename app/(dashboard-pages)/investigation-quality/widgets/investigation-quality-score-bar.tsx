@@ -9,7 +9,7 @@ export interface InvestigationQualityScoreBarProps {
   maxScore?: number;
 }
 
-const InvestigationQualityScoreBar: React.FC<InvestigationQualityScoreBarProps> = ({
+const InvestigationQualityScoreBar: React.FunctionComponent<InvestigationQualityScoreBarProps> = ({
   score,
   maxScore = 100,
 }) => {

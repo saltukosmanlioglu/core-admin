@@ -1,60 +1,37 @@
-import React from "react";
-import * as echarts from "echarts/core";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
-import {
-  TooltipComponent, type TooltipComponentOption,
-  GridComponent, type GridComponentOption,
-  TitleComponent, type TitleComponentOption,
-} from "echarts/components";
-import { LineChart, type LineSeriesOption } from "echarts/charts";
-import { CanvasRenderer } from "echarts/renderers";
 
-import DashboardCard from "@/components/dashboard-card";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetInvestigationTimeResponse } from "@/services/dashboard/ai-performance/investigation-time";
 
-import { ChildProps } from "./types";
-
-echarts.use([
-  TooltipComponent,
-  GridComponent,
-  TitleComponent,
-  LineChart,
-  CanvasRenderer,
-]);
-
-type EChartsOption = echarts.ComposeOption<
-  TooltipComponentOption |
-  GridComponentOption |
-  TitleComponentOption |
-  LineSeriesOption
->;
-
-const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: GetInvestigationTimeResponse }> = ({
+const AIVsHumanInvestigationTime: React.FunctionComponent<ChartChildProps & { data: GetInvestigationTimeResponse }> = ({
   data = [],
   onChartReady
 }) => {
-  const option: EChartsOption = {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = 'AI vs Human Investigation Time Chart'
+
+  const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: {
       trigger: "axis",
-      axisPointer: {
-        type: "line",
-      },
+      axisPointer: { type: "line" },
     },
     legend: {
       data: ["AI", "Human"],
       top: "bottom",
       left: "center",
-      textStyle: {
-        color: "#000",
-      },
+      textStyle: { color: "#000" },
     },
     xAxis: [
       {
         type: "category",
         boundaryGap: false,
-        axisLabel: {
-          color: "#000",
-        },
+        axisLabel: { color: "#000" },
         data: data.map((d) => d.month),
       },
     ],
@@ -64,13 +41,9 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: G
         nameGap: 40,
         nameLocation: "center",
         nameTextStyle: { color: "#000" },
-        axisLabel: {
-          color: "#000",
-        },
+        axisLabel: { color: "#000" },
         type: "value",
-        axisPointer: {
-          label: { show: false },
-        },
+        axisPointer: { label: { show: false } },
       },
     ],
     series: [
@@ -79,15 +52,9 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: G
         name: "AI",
         type: "line",
         symbolSize: 8,
-        lineStyle: {
-          width: 2,
-        },
-        areaStyle: {
-          opacity: 0.3,
-        },
-        emphasis: {
-          focus: "series",
-        },
+        lineStyle: { width: 2 },
+        areaStyle: { opacity: 0.3 },
+        emphasis: { focus: "series" },
         data: data.map((d) => d.aiValue)
       },
       {
@@ -95,19 +62,19 @@ const AIVsHumanInvestigationTime: React.FunctionComponent<ChildProps & { data: G
         name: "Human",
         type: "line",
         symbolSize: 8,
-        lineStyle: {
-          width: 3,
-        },
-        emphasis: {
-          focus: "series",
-        },
+        lineStyle: { width: 3 },
+        emphasis: { focus: "series" },
         data: data.map((d) => d.humanValue)
       },
     ],
   };
 
   return (
-    <DashboardCard title="AI vs Human Investigation Time Chart">
+    <DashboardCard
+      fullscreenOpen={fullscreen}
+      onFullscreenOpenChange={setFullscreen}
+      title={titleOfChart}
+    >
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

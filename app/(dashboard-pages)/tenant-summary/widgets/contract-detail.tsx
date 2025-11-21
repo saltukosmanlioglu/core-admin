@@ -3,9 +3,7 @@
 import React from "react";
 import { Box, Typography, LinearProgress } from "@mui/material";
 
-import DashboardCard from "@/components/dashboard-card";
-
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export interface ContractDetailProps {
   daysUntilExpiry: number;
@@ -13,7 +11,7 @@ export interface ContractDetailProps {
   riskLabel: string;
 }
 
-export const ContractDetail: React.FunctionComponent<ChildProps & ContractDetailProps> = ({
+export const ContractDetail: React.FunctionComponent<ChartChildProps & ContractDetailProps> = ({
   daysUntilExpiry,
   progress,
   riskLabel

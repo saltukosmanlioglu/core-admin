@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 
-import DashboardCard from "@/components/dashboard-card";
-
-import { ChildProps } from "./types";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 
 export type FailedControl = {
   name: string;
@@ -16,11 +14,19 @@ export interface TopFailedCriticalControlsProps {
   data: FailedControl[];
 }
 
-export const TopFailedCriticalControls: React.FunctionComponent<ChildProps & TopFailedCriticalControlsProps> = ({
+export const TopFailedCriticalControls: React.FunctionComponent<ChartChildProps & TopFailedCriticalControlsProps> = ({
   data,
   onChartReady
 }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const titleOfChart = "Top 10 Failed Critical Controls"
+
   const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "shadow" },
@@ -31,8 +37,6 @@ export const TopFailedCriticalControls: React.FunctionComponent<ChildProps & Top
     },
     grid: {
       left: 140,
-      right: 40,
-      top: 20,
       bottom: 40,
     },
     xAxis: {
@@ -44,7 +48,7 @@ export const TopFailedCriticalControls: React.FunctionComponent<ChildProps & Top
     },
     yAxis: {
       type: "category",
-      inverse: true, // highest at top
+      inverse: true,
       data: data.map((d) => d.name),
       axisLabel: {
         color: "#374151",
@@ -57,7 +61,7 @@ export const TopFailedCriticalControls: React.FunctionComponent<ChildProps & Top
         data: data.map((d) => d.value),
         barWidth: 18,
         itemStyle: {
-          color: "#c9782a", // warm orange-brown like the mock
+          color: "#c9782a",
           borderRadius: [4, 4, 4, 4],
         },
       },
@@ -65,7 +69,7 @@ export const TopFailedCriticalControls: React.FunctionComponent<ChildProps & Top
   };
 
   return (
-    <DashboardCard title="Top 10 Failed Critical Controls">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}

@@ -4,7 +4,7 @@ import { KPICard } from "@/components/kpi-card";
 
 export const MostFrequentImprovedTheme: React.FunctionComponent = () => {
   return (
-    <KPICard title="Most Frequent ImprovedTheme">
+    <KPICard title="Most Frequent Improved Theme">
       <Typography
         variant="h6"
         sx={{ fontWeight: 800, color: '#2da44e', lineHeight: 1.1 }}

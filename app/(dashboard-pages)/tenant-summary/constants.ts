@@ -1,8 +1,8 @@
 import { DashboardLayoutProps } from "@/mui/layout/dashboard";
 
-import { TenantSummaryBaseParamsProps } from "@/services/dashboard/base";
 import { GetCompanyResponse } from "@/services/dashboard/company";
 import { GetModuleResponse } from "@/services/dashboard/module";
+import { TenantSummaryBaseParamsProps } from "@/services/dashboard/base";
 
 import { shiftDate } from "@/utils/funcs";
 

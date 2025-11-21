@@ -1,10 +1,13 @@
 "use client";
 
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 
 import DashboardCard from "@/components/dashboard-card";
-import DataTable, { DataTableColumn, DataTablePaginationProps } from "@/components/data-table";
+import DataTable, {
+  DataTableColumn,
+  DataTablePaginationProps
+} from "@/components/data-table";
 
 export type InactiveUser = {
   id?: string | number;

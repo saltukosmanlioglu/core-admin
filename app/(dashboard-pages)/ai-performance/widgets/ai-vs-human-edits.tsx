@@ -1,31 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
-import * as echarts from "echarts/core";
-import {
-  TooltipComponent,
-  TooltipComponentOption,
-  GridComponent,
-  GridComponentOption,
-  TitleComponent,
-  TitleComponentOption,
-} from "echarts/components";
-import { ScatterChart, ScatterSeriesOption } from "echarts/charts";
-import { CanvasRenderer } from "echarts/renderers";
 
-import DashboardCard from "@/components/dashboard-card";
+import DashboardCard, { ChartChildProps } from "@/components/dashboard-card";
 import { GetAIVsHumanEditsResponse } from "@/services/dashboard/ai-performance/ai-vs-human-edits";
 
-import { ChildProps } from "./types";
+const AIVsHumanEdits: React.FunctionComponent<ChartChildProps & { data: GetAIVsHumanEditsResponse }> = ({ onChartReady, data }) => {
+  const [fullscreen, setFullscreen] = useState(false);
 
-echarts.use([TooltipComponent, GridComponent, TitleComponent, ScatterChart, CanvasRenderer]);
+  const titleOfChart = 'AI Confidence Vs Human Edits'
 
-type EChartsOption = echarts.ComposeOption<
-  TooltipComponentOption | GridComponentOption | TitleComponentOption | ScatterSeriesOption
->;
-
-const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: GetAIVsHumanEditsResponse }> = ({ onChartReady, data }) => {
-  const option: EChartsOption = {
-    grid: { left: 50, right: 16, top: 46, bottom: 44, containLabel: true },
+  const option = {
+    title: {
+      show: fullscreen,
+      text: titleOfChart
+    },
     tooltip: {
       trigger: "item",
       formatter: (p: any) => {
@@ -86,7 +74,7 @@ const AIVsHumanEdits: React.FunctionComponent<ChildProps & { data: GetAIVsHumanE
   };
 
   return (
-    <DashboardCard title="AI Confidence Vs Human Edits">
+    <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       <ReactECharts
         onChartReady={onChartReady}
         option={option}
