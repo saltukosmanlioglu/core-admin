@@ -7,9 +7,9 @@ import AppTheme from '@mui/theme/app-theme';
 import Content from '@/app/(identity-server)/sign-in/widgets/content';
 import SignInCard from '@/app/(identity-server)/sign-in/widgets/sign-in-card';
 
-export default function SignIn(props: { disableCustomTheme?: boolean }) {
+export default function SignIn() {
   return (
-    <AppTheme {...props}>
+    <AppTheme>
       <CssBaseline enableColorScheme />
       <Stack
         direction="column"
