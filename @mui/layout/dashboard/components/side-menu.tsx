@@ -1,17 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Divider from "@mui/material/Divider";
 import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import OptionsMenu from "@/mui/components/options-menu";
+
 import NestedList from "./nested-list";
 
 const DRAWER_WIDTH = 240;

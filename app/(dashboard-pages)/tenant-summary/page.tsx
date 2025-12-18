@@ -127,7 +127,6 @@ export default function TenantSummary() {
     getNumberOfTokenUsedByUser(filter)
       .then((res) => setNumberOfTokenUsedByUser(res))
       .catch((e) => console.log(e))
-
   }, [filter]);
 
   useEffect(() => {

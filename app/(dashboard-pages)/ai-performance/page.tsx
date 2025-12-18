@@ -73,20 +73,18 @@ export default function AIPerformance() {
 
   return (
     <DashboardLayout {...layoutProps(filter, setFilter, departments, investigators)}>
-      <Grid container spacing={2} columns={12} sx={{ mb: (theme) => theme.spacing(2), width: '100%' }}>
-        <Grid container spacing={2} columns={12} sx={{ mb: 2, width: '100%' }}>
-          <Grid size={{ xs: 12, sm: 6, lg: 3, }} sx={{ width: '100%' }}>
-            <ReportsGeneratedByAI data={KPI} />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-            <AIOutputAcceptanceRate data={KPI} />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-            <AverageTimeSavedPerCase data={KPI} />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-            <TotalHumanReviewEdits data={KPI} />
-          </Grid>
+      <Grid container spacing={2} columns={12} sx={{ mb: 2, width: '100%' }}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3, }} sx={{ width: '100%' }}>
+          <ReportsGeneratedByAI data={KPI} />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+          <AIOutputAcceptanceRate data={KPI} />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+          <AverageTimeSavedPerCase data={KPI} />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+          <TotalHumanReviewEdits data={KPI} />
         </Grid>
       </Grid>
 
