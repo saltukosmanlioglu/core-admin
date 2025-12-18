@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { ApiResponse } from "@/services/dashboard/base";
 import { GetTopKeywordsResponse } from "@/services/dashboard/ai-performance/top-keywords";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const keywords = [
     "training", "supervision", "communication", "fatigue", "procedure",
     "equipment", "Jones", "sustsorio", "safety", "data", "report",

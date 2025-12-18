@@ -9,6 +9,8 @@ export async function GET(req: NextRequest) {
   const dateRange = searchParams.get("dateRange");
   const investigator = searchParams.get("investigator");
   const department = searchParams.get("department");
+  
+  console.log(dateRange, investigator, department)
 
   const X_MIN = 2;
   const X_MAX = 46;

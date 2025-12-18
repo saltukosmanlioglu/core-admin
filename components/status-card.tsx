@@ -31,7 +31,6 @@ export interface StatusCardProps {
   progress: number;
   status: KPIStatusVariant;
   statusText?: string;
-  actionLabel?: string;
   onViewDetails?: () => void;
 }
 
@@ -40,7 +39,6 @@ const StatusCard: React.FunctionComponent<StatusCardProps> = ({
   progress,
   status,
   statusText,
-  actionLabel = "View Details",
   onViewDetails,
 }) => {
   const clampedProgress = Math.max(0, Math.min(100, progress));

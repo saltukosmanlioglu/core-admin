@@ -18,6 +18,8 @@ export async function GET(req: NextRequest) {
     module: searchParams.get("module") || undefined,
   };
 
+  console.log(params)
+
   const data: EngagementSegment[] = [
     {
       name: "Active",

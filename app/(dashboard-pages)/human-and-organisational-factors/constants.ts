@@ -57,9 +57,9 @@ export function layoutProps(
       {
         type: "dropdown",
         text: "PHMP Areas",
-        dropdownList: controlTypes.map((phmpAreas) => ({
-          text: phmpAreas.name,
-          onClick: () => setFilter({ ...filter, phmpArea: phmpAreas.name }),
+        dropdownList: phmpAreas.map((phmpArea) => ({
+          text: phmpArea.name,
+          onClick: () => setFilter({ ...filter, phmpArea: phmpArea.name }),
         })),
         onClose: () => setFilter({ ...filter, phmpArea: undefined }),
       },

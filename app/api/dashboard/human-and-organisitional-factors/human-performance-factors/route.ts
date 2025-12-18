@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { ApiResponse } from "@/services/dashboard/base";
 import {
@@ -6,7 +6,7 @@ import {
   HumanPerformanceFactorsData,
 } from "@/services/dashboard/human-and-organisitional-factors/human-performance-factor";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const categories = [
     "Fatigue",
     "Communication",

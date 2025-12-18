@@ -101,7 +101,6 @@ export const ControlEffectivenessVsFrequency: React.FunctionComponent<ChartChild
     ],
   };
 
-
   return (
     <DashboardCard fullscreenOpen={fullscreen} onFullscreenOpenChange={setFullscreen} title={titleOfChart}>
       {data && data.length !== 0 ? <ReactECharts

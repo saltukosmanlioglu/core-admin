@@ -12,6 +12,8 @@ export async function GET(req: NextRequest) {
     module: searchParams.get("module") || undefined,
   };
 
+  console.log(params)
+
   const data: Array<NumberOfTokenUsedByUser> = [
     { label: "User 1", used: 5, limit: 10 },
     { label: "User 2", used: 15, limit: 20 },

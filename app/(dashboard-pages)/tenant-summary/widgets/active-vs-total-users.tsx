@@ -12,7 +12,6 @@ export interface ActiveVsTotalUsersProps {
 
 export const ActiveVsTotalUsers: React.FunctionComponent<ChartChildProps & ActiveVsTotalUsersProps> = ({
   percentage,
-  daysUntilExpiry,
   onChartReady
 }) => {
   const [fullscreen, setFullscreen] = useState(false);

@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { ApiResponse } from "@/services/dashboard/base";
 import { GetEmergingThemeResponse } from "@/services/dashboard/organisitional-learning-network/emerging-theme";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const emergingThemes = [
     "training", "supervision", "communication", "fatigue", "procedure",
     "equipment", "Jones", "sustsorio", "safety", "data", "report",

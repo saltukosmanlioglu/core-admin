@@ -63,11 +63,12 @@ export default function SignInCard() {
     });
   };
 
+  let isValid = true;
+  
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
 
-    let isValid = true;
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);

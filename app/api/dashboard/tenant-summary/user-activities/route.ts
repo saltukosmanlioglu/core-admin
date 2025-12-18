@@ -24,6 +24,8 @@ export async function GET(req: NextRequest) {
     module: searchParams.get("module") || undefined,
   };
 
+  console.log(params)
+
   const today = new Date();
   const days = 90;
 

@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     investigator: searchParams.get("investigator") || undefined,
   };
 
-  let base: KPI = {
+  const base: KPI = {
     aiOutputAcceptanceRate: rand(60, 99),
     reportsGeneratedByAI: rand(0, 10000),
     averageTimeSavedPerCase: rand(0, 10000),

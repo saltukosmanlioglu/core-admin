@@ -10,6 +10,8 @@ export async function GET(req: NextRequest) {
   const investigator = searchParams.get("investigator");
   const department = searchParams.get("department");
 
+  console.log(dateRange, investigator, department)
+
   const months = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
